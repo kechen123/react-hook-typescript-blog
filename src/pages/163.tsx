@@ -14,6 +14,11 @@ const Music163 = () => {
 	})
 	//当前播放列表
 	const [songList, setSongList] = useState([])
+	//当前播放歌曲信息
+	const [songDetail, setSongDetail] = useState({
+		lyric: {},
+		picUrl: '',
+	})
 	//日推
 	const [recommend, setRecommend] = useState([])
 	useEffect(() => {
@@ -26,21 +31,6 @@ const Music163 = () => {
 			})
 	}, [])
 
-	const content = songList.map((song: any, index: number) => {
-		return (
-			<div className="song_item">
-				<div className="song_index">{index + 1}</div>
-				<div className="song_name">
-					<span className="song_adddfavourite">
-						{song.name} - 歌手: {song.singer}
-					</span>
-				</div>
-				<div className="song_artist">{song.playCount}</div>
-				<div className="song_artist">{song.album}</div>
-				<div className="song_duration">{song.playTime}</div>
-			</div>
-		)
-	})
 	function formatDuring(mss: any) {
 		var minutes = parseInt(((mss % (1000 * 60 * 60)) / (1000 * 60)).toString())
 		var seconds = parseInt(((mss % (1000 * 60)) / 1000).toString())
@@ -97,28 +87,36 @@ const Music163 = () => {
 		storage.removeStorage('wyy_name')
 		storage.removeStorage('wyy_id')
 		storage.removeStorage('_')
-		getData('163/login/cellphone', param).then(data => {
-			const result = data.data
-			if (result._) {
-				storage.setStorage('_', result._)
-				storage.setStorage('wyy_head', result.profile.avatarUrl)
-				storage.setStorage('wyy_name', result.profile.nickname)
-				storage.setStorage('wyy_id', result.profile.userId)
-				setUser({
-					wyy_head: result.profile.avatarUrl,
-					wyy_name: result.profile.nickname,
-					wyy_id: result.profile.userId,
-				})
-				recommendClick()
-				// 			this.updateUser(result);
-				// 			this.getUserDetail();
-				// //              this.playlist();
-				// 			this.recommendClick();
-			} else {
-				console.log('登录失败,请检查您的账号密码是否正确')
-				return
-			}
-		})
+		getData('163/login/cellphone', param)
+			.then(data => {
+				const result = data.data
+				if (result._) {
+					storage.setStorage('_', result._)
+					storage.setStorage('wyy_head', result.profile.avatarUrl)
+					storage.setStorage('wyy_name', result.profile.nickname)
+					storage.setStorage('wyy_id', result.profile.userId)
+					setUser({
+						wyy_head: result.profile.avatarUrl,
+						wyy_name: result.profile.nickname,
+						wyy_id: result.profile.userId,
+					})
+					recommendClick()
+					// 			this.updateUser(result);
+					// 			this.getUserDetail();
+					// //              this.playlist();
+					// 			this.recommendClick();
+				} else {
+					alert('登录失败,请检查您的账号密码是否正确')
+					return
+				}
+			})
+			.catch(err => {
+				alert('登录失败:::' + err)
+			})
+	}
+	//默认点击第一个
+	const itemClick = (song: song) => {
+		setSongDetail(song)
 	}
 	return (
 		<div>
@@ -134,10 +132,16 @@ const Music163 = () => {
 				</div>
 				<div className="m163_content">
 					<div className="m163_music">
-						<SongList data={songList} />
+						{songList.length > 0 ? <SongList data={songList} itemClick={itemClick} /> : ''}
 					</div>
 					<div className="m163_lyrics">
-						<div className="songs_lyrics"></div>
+						<div className="songs_lyrics">
+							{JSON.stringify(songDetail.lyric) !== '{}' ? (
+								<Lyrics lyrics={songDetail.lyric} picUrl={songDetail.picUrl}></Lyrics>
+							) : (
+								''
+							)}
+						</div>
 					</div>
 				</div>
 			</div>

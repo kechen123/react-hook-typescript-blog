@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import '../less/lyrics.less'
 interface song {
 	picUrl: any
-	lyrics: string[]
+	lyrics: object
 }
 
 const Lyrics = (audio: song) => {
+	const list = Object.values(audio.lyrics)
 	return (
 		<div className="lyrics_body">
 			<div className="song_img">
@@ -13,8 +14,12 @@ const Lyrics = (audio: song) => {
 				<span className="msk"></span>
 			</div>
 			<div className="lyric-content">
-				{audio.lyrics.map(item => {
-					return <p className="song_item">{{ item }}</p>
+				{list.map((item, index) => {
+					return (
+						<p className="song_item" key={index}>
+							{item}
+						</p>
+					)
 				})}
 			</div>
 		</div>

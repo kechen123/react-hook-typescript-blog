@@ -8,4 +8,5 @@ export interface song {
 	picUrl: any
 	playCount: number
 	playTime: number
+	lyric: Array<string>
 }
