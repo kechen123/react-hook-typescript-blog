@@ -1,0 +1,53 @@
+.h_body {
+  //background: url("../image/index_bg.jpeg");
+  //background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .h_content {
+    margin: 0px auto;
+    padding-top: 200px;
+
+    @media print,
+    screen and (max-width: 48em) {
+      margin: 50px auto;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .h_name {
+      font-size: 52px;
+      margin: 30px;
+      color: #FFF;
+      font-weight: bold;
+    }
+
+    .h_sign {
+      color: #FFF;
+      font-size: 22px;
+      margin: 30px auto;
+    }
+
+
+
+    .h_btn {
+      display: block;
+      margin: 80px auto;
+      width: 145px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 10px;
+      background: #000;
+      color: #FFF;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}

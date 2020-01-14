@@ -1,0 +1,132 @@
+.t_body {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  font-size: 24px;
+  color: #FFF;
+  line-height: 50px;
+
+  //background: #f1f1f15c;
+  //border-bottom: solid 1px #999;
+  .t_content {
+    padding: 20px 30px 5px 30px;
+    margin: 0 auto;
+    display: flex;
+    display: -webkit-flex;
+    /* Safari */
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .t_left {
+      display: flex;
+      display: -webkit-flex;
+      /* Safari */
+      flex-direction: row;
+      font-size: 26px;
+      justify-content: space-around;
+      cursor: pointer;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+
+        @media print,
+        screen and (max-width: 48em) {
+          margin-right: 0;
+        }
+
+        padding: 0 10px;
+        cursor:pointer;
+        font-size: 16px;
+        line-height: 30px;
+        height: 30px;
+        margin-top: 15px;
+        color: #FFF;
+      }
+
+      li {
+        list-style-type: none;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        cursor: pointer;
+        position: relative;
+        font-size: 18px;
+        color: #FFF;
+
+        &::after {
+          content: "";
+          width: 0;
+          height: 2px;
+          background-color: #FFF;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          transition: width .4s;
+
+        }
+      }
+
+      li:hover {
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
+    .t_right_l {
+      width: 40px;
+      height: 40px;
+      background: url("../image/t_liebiao.png") center;
+      background-size: cover;
+      display: none;
+    }
+
+    @media print,
+    screen and (max-width: 48em) {
+      .tabs {
+        display: none;
+      }
+
+      .t_right_l {
+        display: block;
+      }
+
+      .t_content {
+        padding: 20px 30px 5px 30px;
+      }
+    }
+  }
+
+}
+
+.t_menus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, .86);
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 65% 0;
+
+  .menu_item {
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+}
