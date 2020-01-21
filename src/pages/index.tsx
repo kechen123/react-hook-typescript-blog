@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../less/index.less'
+import print from '../components/codePrinter/index.js'
+
 const Index = () => {
 	const [sign, setSign] = useState('')
 	const [k, setK] = useState(0)
@@ -18,7 +20,9 @@ const Index = () => {
 		setSign(signString.slice(0, k))
 		if (k < signString.length) typing()
 	}, [k])
-
+	useEffect(() => {
+		print('../src/pages/index.tsx', 16)
+	}, [])
 	return (
 		<div className="h_body">
 			<div className="h_content">

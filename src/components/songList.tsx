@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { song } from '../common/interfaceList'
 
 import { getData } from '../request'
@@ -7,6 +7,7 @@ import '../less/songList.less'
 interface IProps {
 	data: Array<song>
 	itemClick(params: object): void
+	addFavourite(params: song): void
 }
 
 //歌词解析
@@ -60,6 +61,8 @@ async function getSongDetail(id: number) {
 const SongList = (props: IProps) => {
 	const [active, setActive] = useState(0)
 	const [songDetail, setSongDetail] = useState(props.data[0])
+	const submit1 = useRef(null)
+	console.log(submit1)
 	const songClick = (song: song, index: number) => {
 		setActive(index)
 		setSongDetail(song)
@@ -76,19 +79,24 @@ const SongList = (props: IProps) => {
 			props.itemClick(song)
 		}
 		fetchData()
+		// if (submit1.current != null) {
+		// 	var rect = submit1.current.getBoundingClientRect()
+		// }
 	}, [active])
 	return (
 		<div className="songs">
-			<div className="songs_content">
+			<div className="songs_content" ref={submit1}>
 				{props.data.map((song, index) => {
 					return (
 						<div className="song_item" key={index} onClick={e => songClick(song, index)}>
 							<div className="song_index">{index + 1}</div>
+
 							<div className="song_name">
-								<span className="song_adddfavourite"></span>
+								{/* <span className="song_adddfavourite"></span> */}
 								{song.name} - 歌手: {song.singer}
 							</div>
-							<div className="song_artist">{song.playCount}</div>
+							<i className="song_adddfavourite" onClick={e => props.addFavourite(song)}></i>
+							{/* <div className="song_artist">{song.playCount}</div> */}
 							<div className="song_artist">{song.album}</div>
 							<div className="song_duration">{song.playTime}</div>
 						</div>

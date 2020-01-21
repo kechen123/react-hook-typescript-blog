@@ -118,6 +118,10 @@ const Music163 = () => {
 	const itemClick = (song: song) => {
 		setSongDetail(song)
 	}
+	//加入播放列表
+	const addSongList = (song: song) => {
+		console.log(song)
+	}
 	return (
 		<div>
 			<div className="m163_body">
@@ -132,7 +136,11 @@ const Music163 = () => {
 				</div>
 				<div className="m163_content">
 					<div className="m163_music">
-						{songList.length > 0 ? <SongList data={songList} itemClick={itemClick} /> : ''}
+						{songList.length > 0 ? (
+							<SongList data={songList} itemClick={itemClick} addFavourite={addSongList} />
+						) : (
+							''
+						)}
 					</div>
 					<div className="m163_lyrics">
 						<div className="songs_lyrics">
