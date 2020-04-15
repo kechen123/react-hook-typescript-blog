@@ -18,13 +18,12 @@
     justify-content: space-between;
 
     .t_left {
-      display: flex;
-      display: -webkit-flex;
-      /* Safari */
-      flex-direction: row;
-      font-size: 26px;
-      justify-content: space-around;
+      background: url(../image/logo_title.png) no-repeat 100%;
+      background-size: 120px 61px;
       cursor: pointer;
+      width: 120px;
+      height: 61px;
+      _background: none;
     }
 
     .tabs {
@@ -73,7 +72,8 @@
         }
       }
 
-      li:hover {
+      li:hover,
+      .active {
         &::after {
           width: 100%;
         }

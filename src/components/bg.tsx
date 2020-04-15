@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
+import { useMappedState } from 'redux-react-hook'
+import { BackImage } from '../redux/Stores'
 import '../less/bg.less'
+const mapState = (state: BackImage) => ({
+	lastUpdated: state.lastUpdated,
+	image: state.image,
+})
+
 const BgUrl = () => {
-	const [bgurl] = useState('http://kedachen.com:3000/bg/a430d4a01577686900000.jpg')
+	const { image } = useMappedState(mapState)
 	const [imagesize] = useState('cover')
 	const [imageposition] = useState('center center')
 	return (
@@ -9,7 +16,7 @@ const BgUrl = () => {
 			<div
 				className="fixedbg"
 				style={{
-					backgroundImage: 'url(' + bgurl + ')',
+					backgroundImage: 'url(' + image + ')',
 					backgroundSize: imagesize,
 					backgroundPosition: imageposition,
 				}}

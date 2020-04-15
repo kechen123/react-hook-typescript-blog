@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-const url = 'http://localhost:8080/'
+import { useState, useEffect } from 'react'
+// const url = 'http://localhost:8080/'
+const url = ''
 
 export const useGetPage = (initialUrl: string, initialParams: any) => {
 	const [data, setData] = useState({})

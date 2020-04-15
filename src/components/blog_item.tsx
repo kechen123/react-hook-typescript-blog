@@ -11,21 +11,19 @@ const BlogItem = (Blog: any) => {
 	return (
 		<div className="card">
 			<header className="card__thumb">
-				<a href="#">
-					<img src={require('../image/card.jpg')} />
-				</a>
+				<img alt="博客图片" src={require('../image/card.jpg')} />
 			</header>
 			<div className="card__body">
 				<h2 className="card__title">
-					<a href="#">{obj.title}</a>
+					<span>{obj.title}</span>
 				</h2>
 				<p className="card__description">{obj.introduction}</p>
 			</div>
 
 			<footer className="card__footer">
-				<span className="icon ion-clock"></span> {obj.create_time}
+				<span className="icon ion-clock">{obj.create_time}</span>
 				<span className="icon ion-chatbox"></span>
-				<a href="#"> {obj.comment_count} 评论</a>
+				<span className="icon "> {obj.comment_count} 评论</span>
 			</footer>
 		</div>
 	)
