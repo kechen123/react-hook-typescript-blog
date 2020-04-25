@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import '../assets/less/codeCss.less'
 
-const Index = () => {
-	return ''
+const Home = ({ history }: any) => {
+	const [text, setText] = useState('')
+	return <div></div>
 }
-export default Index
+export default withRouter(Home)
