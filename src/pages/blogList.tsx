@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'redux-react-hook'
+import { withRouter } from 'react-router-dom'
 import BlogItem from '../components/blog_item'
-import '../less/blogList.less'
+import '../assets/icon/iconfont.css'
+import '../assets/less/blogList.less'
 import { useGetPage } from '../request'
-const BlogList = () => {
+const BlogList = ({ history }: any) => {
 	const [currentPage] = useState(0)
 	const [pageSize] = useState(10)
 	const [{ data }] = useGetPage('/ke/blog', {
@@ -21,9 +23,6 @@ const BlogList = () => {
 		console.log(data)
 		if (data.code === 200) {
 			for (let i = 0; i < data.data.length; i++) {
-				//if(result.data[i].title.length>15){
-				//    result.data[i].title=result.data[i].title.substring(0,15);
-				//}
 				if (data.data[i].introduction && data.data[i].introduction.length > 150) {
 					data.data[i].introduction = data.data[i].introduction.substring(0, 150) + '...'
 				}
@@ -43,15 +42,23 @@ const BlogList = () => {
 			return <div className="b_content"></div>
 		}
 	}
-
+	const btnClick = () => {
+		return () => {
+			dispatch({
+				type: 'change_title',
+				boo: true,
+			})
+			history.push('/createBlog')
+		}
+	}
 	return (
 		<div className="b_html">
 			<div className="b_body">
 				<List />
 				<div className="b_type"></div>
 			</div>
+			<i onClick={btnClick()} className="iconfont iconshuxie"></i>
 		</div>
 	)
 }
-
-export default BlogList
+export default withRouter(BlogList)

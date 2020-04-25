@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import '../less/title.less'
+import { useMappedState } from 'redux-react-hook'
+import { BackImage } from '../redux/Stores'
+import '../assets/less/title.less'
 import { withRouter } from 'react-router-dom'
+const mapState = (state: BackImage) => ({
+	isEdit: state.isEdit,
+})
 const Title = ({ history }: any) => {
+	const { isEdit } = useMappedState(mapState)
 	const [active, setActive] = useState('')
 	const [showMenu, setShowMenu] = useState(false)
 	const toggle = () => {
@@ -18,6 +24,27 @@ const Title = ({ history }: any) => {
 		setActive(router)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+	const RightContent = () => {
+		if (isEdit) {
+			return <div></div>
+		} else {
+			return (
+				<div className="tabs">
+					<li className={active.indexOf('/blogList') > -1 ? 'active' : ''} onClick={btnClick('/blogList')}>
+						博客
+					</li>
+					<li className={active.indexOf('/index') > -1 ? 'active' : ''} onClick={btnClick('/index')}>
+						联系
+					</li>
+					<li>
+						<a href="https://github.com/kechen123" target="view_window">
+							GitHub
+						</a>
+					</li>
+				</div>
+			)
+		}
+	}
 	const IsMobil = () => {
 		if (showMenu) {
 			return (
@@ -44,22 +71,7 @@ const Title = ({ history }: any) => {
 				<div className="t_body">
 					<div className="t_content">
 						<div className="t_left" onClick={btnClick('/index')}></div>
-						<div className="tabs">
-							<li
-								className={active.indexOf('/blogList') > -1 ? 'active' : ''}
-								onClick={btnClick('/blogList')}
-							>
-								博客
-							</li>
-							<li className={active.indexOf('/index') > -1 ? 'active' : ''} onClick={btnClick('/index')}>
-								联系
-							</li>
-							<li>
-								<a href="https://github.com/kechen123" target="view_window">
-									GitHub
-								</a>
-							</li>
-						</div>
+						<RightContent />
 						<div className="t_right_l" onClick={toggle}></div>
 					</div>
 				</div>

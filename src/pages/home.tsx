@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../less/codeCss.less'
+import '../assets/less/codeCss.less'
 
 const Index = () => {
 	return ''

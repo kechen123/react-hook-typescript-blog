@@ -9,11 +9,25 @@ export default function reducer(state: BackImage | null | undefined, action: Act
 		case 'add_image': {
 			return {
 				...state,
-				lastUpdated: Date.now(),
 				image: action.todo,
 			}
 		}
-
+		case 'change_title': {
+			return {
+				...state,
+				isEdit: action.boo,
+			}
+		}
+		case 'set_content': {
+			return {
+				...state,
+				Content: {
+					title: state.Content.title,
+					type: state.Content.type,
+					content: state.Content.content,
+				},
+			}
+		}
 		default:
 			return state
 	}

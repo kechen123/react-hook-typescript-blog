@@ -1,0 +1,16 @@
+{
+  "id": "1763913",
+  "name": "kedachen_blog",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3781142",
+      "name": "书写",
+      "font_class": "shuxie",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}

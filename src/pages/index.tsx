@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../less/index.less'
+import '../assets/less/index.less'
 
 const Index = () => {
 	const [sign, setSign] = useState('')

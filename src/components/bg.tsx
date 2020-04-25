@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useMappedState } from 'redux-react-hook'
 import { BackImage } from '../redux/Stores'
-import '../less/bg.less'
+import '../assets/less/bg.less'
 const mapState = (state: BackImage) => ({
-	lastUpdated: state.lastUpdated,
 	image: state.image,
 })
 

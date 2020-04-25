@@ -1,5 +1,5 @@
 import React from 'react'
-import '../less/blog_item.less'
+import '../assets/less/blog_item.less'
 interface Blog {
 	title: string
 	introduction: string
@@ -11,12 +11,10 @@ const BlogItem = (Blog: any) => {
 	return (
 		<div className="card">
 			<header className="card__thumb">
-				<img alt="博客图片" src={require('../image/card.jpg')} />
+				<img alt="博客图片" src={require('../assets/image/card.jpg')} />
 			</header>
 			<div className="card__body">
-				<h2 className="card__title">
-					<span>{obj.title}</span>
-				</h2>
+				<h2 className="card__title">{obj.title}</h2>
 				<p className="card__description">{obj.introduction}</p>
 			</div>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { Route, Switch } from 'react-router-dom'
-import '../less/AnimatedSwitch.less'
+import '../assets/less/AnimatedSwitch.less'
 
 const AnimatedSwitch = (props: any) => {
 	const { children } = props
