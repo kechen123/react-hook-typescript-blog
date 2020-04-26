@@ -1,10 +1,10 @@
-import React, { useState, useEffect, isValidElement } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import '../assets/less/tag.less'
 import tagsJson from '../assets/tags/tags.json'
 
 const Tag = ({ history }: any) => {
-	const [tags, setTags] = useState(tagsJson)
+	const [tags] = useState(tagsJson)
 	const [num, setNum] = useState(5)
 	const [active, setActive] = useState(0)
 	const [tagList] = useState<any>([])
@@ -15,7 +15,7 @@ const Tag = ({ history }: any) => {
 	const selectTag = (tag: any) => {
 		if (
 			tagList.some((value: any) => {
-				return value.id == tag.id
+				return value.id === tag.id
 			})
 		) {
 			return
@@ -23,11 +23,15 @@ const Tag = ({ history }: any) => {
 		setNum(num - 1)
 		tagList.push(tag)
 	}
+	const delTag = (index: number, value: any) => {
+		tagList.splice(index, 1)
+		setNum(num + 1)
+	}
 	const Taglist = () => {
 		const li = Object.keys(tags.tag).map((value: any, index: number) => {
 			return (
 				<li
-					className={active == index ? 'active' : ''}
+					className={active === index ? 'active' : ''}
 					key={index}
 					data-index={index}
 					onClick={(e) => {
@@ -56,24 +60,50 @@ const Tag = ({ history }: any) => {
 		})
 		return <div className="tab-content ">{list}</div>
 	}
+
 	const Select = () => {
-		if (tagList.length == 0) {
+		if (tagList.length === 0) {
 			return <div></div>
 		}
-		let tag = tagList.map((value: any) => {
-			return <div className="item">{value.name}</div>
+		let tag = tagList.map((value: any, index: number) => {
+			return (
+				<div className="item">
+					{value.name}
+					<i
+						onClick={(e) => {
+							delTag(index, value)
+						}}
+						className="iconfont iconshanchu"
+					></i>
+				</div>
+			)
 		})
 		return <div className="selectTag">{tag}</div>
 	}
 	useEffect(() => {
-		if (num == 0) {
-			setShow(!show)
+		if (num === 0) {
+			setShow(false)
 		}
 	}, [num])
+
+	const click = (e: any) => {
+		//自身区域阻止隐藏
+		e.nativeEvent.stopImmediatePropagation()
+	}
+	useEffect(() => {
+		//点击空白区域隐藏
+		document.onclick = () => {
+			setShow(false)
+		}
+	}, [])
 	return (
 		<div className="body">
-			<Select></Select>
-			<div className={`tag ${num == 0 ? 'hide' : ''}`}>
+			<div
+				className={`tag ${num === 0 ? 'hide' : ''}`}
+				onClick={(e) => {
+					click(e)
+				}}
+			>
 				<button
 					className="btn btn-light btn-sm"
 					onClick={(e) => {
@@ -85,7 +115,7 @@ const Tag = ({ history }: any) => {
 				>
 					+ 添加标签
 				</button>
-				<div className={`dropdown-menu ${show == true ? 'show' : ''}`}>
+				<div className={`dropdown-menu ${show === true ? 'show' : ''}`}>
 					<div className="dropdown-header" id="tagDlgHeader">
 						还可添加 <span className="tags-left">{num}</span> 个标签
 					</div>
@@ -93,6 +123,7 @@ const Tag = ({ history }: any) => {
 					<TagContent></TagContent>
 				</div>
 			</div>
+			<Select></Select>
 		</div>
 	)
 }

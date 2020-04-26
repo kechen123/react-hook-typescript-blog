@@ -1,4 +1,5 @@
 import { Action, BackImage } from './Stores'
+import storage from '../common/cookie'
 
 export default function reducer(state: BackImage | null | undefined, action: Action) {
 	if (!state) {
@@ -13,6 +14,7 @@ export default function reducer(state: BackImage | null | undefined, action: Act
 			}
 		}
 		case 'change_title': {
+			storage.setSession('isEdit', action.boo)
 			return {
 				...state,
 				isEdit: action.boo,
