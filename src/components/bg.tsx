@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { useMappedState } from 'redux-react-hook'
+import { useMappedState, useDispatch } from 'redux-react-hook'
 import { BackImage } from '../redux/Stores'
+import { getData } from '../request'
+import { imageUrl } from '../config.json'
+import storage from '../common/cookie'
+import util from '../common/util'
 import '../assets/less/bg.less'
 const mapState = (state: BackImage) => ({
 	image: state.image,
@@ -8,6 +12,27 @@ const mapState = (state: BackImage) => ({
 
 const BgUrl = () => {
 	const { image } = useMappedState(mapState)
+	const dispatch = useDispatch()
+	const img = storage.getStorage('backGroundImage')
+	if (!image) {
+		if (!img) {
+			getData('/bg/bing').then((res) => {
+				if (JSON.stringify(res) !== '{}') {
+					storage.setStorage('backGroundImage', res.data.url, 86400000)
+					dispatch({
+						type: 'add_image',
+						todo: res.data.url,
+					})
+				}
+			})
+		} else {
+			dispatch({
+				type: 'add_image',
+				todo: img,
+			})
+		}
+	}
+
 	const [imagesize] = useState('cover')
 	const [imageposition] = useState('center center')
 	return (
@@ -15,7 +40,7 @@ const BgUrl = () => {
 			<div
 				className="fixedbg"
 				style={{
-					backgroundImage: 'url(' + image + ')',
+					backgroundImage: 'url(' + imageUrl + image + ')',
 					backgroundSize: imagesize,
 					backgroundPosition: imageposition,
 				}}

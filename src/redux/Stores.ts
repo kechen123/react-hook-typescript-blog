@@ -27,11 +27,9 @@ export type Action =
 			type: 'set_content'
 			content: JSON
 	  }
-
 const isEdit = storage.getSession('isEdit') || false
 export const INITIAL_STATE: BackImage = {
-	image:
-		'https://cn.bing.com/th?id=OHR.UnicornoftheSea_ZH-CN2949385175_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
+	image: '',
 	Content: {
 		title: '',
 		type: '',

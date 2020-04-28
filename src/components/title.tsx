@@ -75,7 +75,8 @@ const Title = ({ history }: any) => {
 				<div className="t_body">
 					<div className="t_content">
 						<div className="t_left" onClick={btnClick('/index')}></div>
-						<div className={`title`}>写文章</div>
+						{isEdit ? <div className={`title`}>写文章</div> : ''}
+
 						<RightContent />
 						<div className="t_right_l" onClick={toggle}></div>
 					</div>

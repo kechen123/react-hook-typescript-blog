@@ -7,17 +7,13 @@ import '../assets/less/blogList.less'
 import { useGetPage } from '../request'
 const BlogList = ({ history }: any) => {
 	const [currentPage] = useState(0)
-	const [pageSize] = useState(10)
+	const [pageSize] = useState(8)
 	const [{ data }] = useGetPage('/ke/blog', {
 		page: currentPage + 1,
 		size: pageSize,
 	})
 	const dispatch = useDispatch()
-	dispatch({
-		type: 'add_image',
-		todo:
-			'https://cn.bing.com/th?id=OHR.UnicornoftheSea_ZH-CN2949385175_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp',
-	})
+
 	let result: any[] = []
 	if (JSON.stringify(data) !== '{}') {
 		console.log(data)

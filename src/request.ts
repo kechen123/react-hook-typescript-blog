@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-// const url = 'http://localhost:8080/'
-const url = ''
+import { requestUrl } from './config.json'
 
 export const useGetPage = (initialUrl: string, initialParams: any) => {
 	const [data, setData] = useState({})
@@ -12,7 +11,7 @@ export const useGetPage = (initialUrl: string, initialParams: any) => {
 		const fetchData = async () => {
 			setIsLoading(true)
 			try {
-				const result = await axios.get(url + initialUrl, { params: params })
+				const result = await axios.get(requestUrl + initialUrl, { params: params })
 				setData(result.data)
 			} catch (error) {
 				setIsError(true)
@@ -23,14 +22,15 @@ export const useGetPage = (initialUrl: string, initialParams: any) => {
 	}, [params])
 	return [{ data, isLoading, isError } as any, setParams]
 }
+
 export const getData = async (initialUrl: string, initialParams?: any) => {
-	return await axios.get(url + initialUrl, { params: initialParams })
+	return await axios.get(requestUrl + initialUrl, { params: initialParams })
 }
 export const putData = async (initialUrl: string, initialParams: any) => {
-	return await axios.put(url + initialUrl, initialParams)
+	return await axios.put(requestUrl + initialUrl, initialParams)
 }
 export const postData = async (initialUrl: string, initialParams: any) => {
-	return await axios.post(url + initialUrl, initialParams)
+	return await axios.post(requestUrl + initialUrl, initialParams)
 }
 // export const usePudddt = (initialUrl, initialData) => {
 // 	const [data, setData] = useState(initialData)
