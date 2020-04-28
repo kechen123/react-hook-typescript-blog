@@ -49,6 +49,7 @@ const Tag = ({ history }: any) => {
 			return (
 				<div
 					className="item"
+					key={value.id}
 					onClick={(e) => {
 						selectTag(value)
 					}}
