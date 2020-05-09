@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import '../assets/less/tag.less'
 import tagsJson from '../assets/tags/tags.json'
 
-const Tag = ({ history }: any) => {
+const Tag = (props: any) => {
 	const [tags] = useState(tagsJson)
 	const [num, setNum] = useState(5)
 	const [active, setActive] = useState(0)
@@ -14,17 +14,19 @@ const Tag = ({ history }: any) => {
 	}
 	const selectTag = (tag: any) => {
 		if (
-			tagList.some((value: any) => {
-				return value.id === tag.id
+			Object.keys(tagList).some((value: any) => {
+				return value === tag.id
 			})
 		) {
 			return
 		}
 		setNum(num - 1)
-		tagList.push(tag)
+		tagList[tag.id] = tag
+		props.setTagList(tagList)
 	}
 	const delTag = (index: number, value: any) => {
 		tagList.splice(index, 1)
+		props.setTagList(tagList)
 		setNum(num + 1)
 	}
 	const Taglist = () => {
@@ -63,16 +65,16 @@ const Tag = ({ history }: any) => {
 	}
 
 	const Select = () => {
-		if (tagList.length === 0) {
+		if (Object.values(props.tagList).length === 0) {
 			return <div></div>
 		}
-		let tag = tagList.map((value: any, index: number) => {
+		let tag = Object.values(props.tagList).map((value: any, index: number) => {
 			return (
-				<div className="item">
+				<div className="item" key={index}>
 					{value.name}
 					<i
 						onClick={(e) => {
-							delTag(index, value)
+							delTag(value.id, value)
 						}}
 						className="iconfont iconshanchu"
 					></i>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMappedState, useDispatch } from 'redux-react-hook'
 import { BackImage } from '../redux/Stores'
-import { getData } from '../request'
+import { getData } from '../http/request'
 import { imageUrl } from '../config.json'
 import storage from '../common/cookie'
 import util from '../common/util'
@@ -18,10 +18,10 @@ const BgUrl = () => {
 		if (!img) {
 			getData('/bg/bing').then((res) => {
 				if (JSON.stringify(res) !== '{}') {
-					storage.setStorage('backGroundImage', res.data.url, 86400000)
+					storage.setStorage('backGroundImage', res.url, 86400000)
 					dispatch({
 						type: 'add_image',
-						todo: res.data.url,
+						todo: res.url,
 					})
 				}
 			})

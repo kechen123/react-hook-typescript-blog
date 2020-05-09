@@ -13,9 +13,9 @@ const store = makeStore()
 const Layout = () => {
 	return (
 		<StoreContext.Provider value={store}>
-			<div className="app" style={{ overflow: 'scroll', overflowY: 'hidden' }}>
+			<div className="app">
 				<BgUrl></BgUrl>
-				<Title></Title>
+				{/* <Title></Title> */}
 				<AnimatedSwitch>
 					<Route exact path="/" component={index} />
 					<Route path="/index" component={index} />

@@ -23,7 +23,7 @@ const Title = ({ history }: any) => {
 		let router = history.location.pathname
 		setActive(router)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [history.location.pathname])
 	const RightContent = () => {
 		if (isEdit) {
 			return (
@@ -50,6 +50,9 @@ const Title = ({ history }: any) => {
 		}
 	}
 	const IsMobil = () => {
+		if (isEdit) {
+			return <div></div>
+		}
 		if (showMenu) {
 			return (
 				<div className="t_menus" onClick={toggle}>

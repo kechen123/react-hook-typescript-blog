@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import BlogItem from '../components/blog_item'
 import '../assets/icon/iconfont.css'
 import '../assets/less/blogList.less'
-import { useGetPage } from '../request'
+import { useGetPage } from '../http/request'
 const BlogList = ({ history }: any) => {
 	const [currentPage] = useState(0)
 	const [pageSize] = useState(8)

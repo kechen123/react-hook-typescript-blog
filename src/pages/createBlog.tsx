@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { withRouter, Prompt } from 'react-router-dom'
 import { useDispatch } from 'redux-react-hook'
 import EditMarkDown from '../components/edit_markdown'
+import { postData, getData } from '../http/request'
 import Tag from '../components/tag'
 import '../assets/less/createBlog.less'
 const txt = `
@@ -36,7 +37,10 @@ ___粗斜体文本___
 `
 const CreateBlog = ({ history }: any) => {
 	const dispatch = useDispatch()
+	const inputRef = useRef<HTMLInputElement | null>(null)
 	const [text, setText] = useState(txt)
+	const [title, setTitle] = useState('')
+	const [tagList, setTagList] = useState<any>({})
 	const leaveMessage = () => {
 		let leave = window.confirm('离开页面数据将不会保存，确定离开吗?')
 		if (leave) {
@@ -47,18 +51,52 @@ const CreateBlog = ({ history }: any) => {
 		}
 		return leave
 	}
+	const saveData = () => {
+		const data = { introduction: text, title, tag_id_json: JSON.stringify(tagList) }
+		postData('/ke/blog', JSON.stringify(data)).then((res) => {
+			debugger
+		})
+	}
+	const onblur = () => {
+		setTitle(inputRef.current?.value || '')
+	}
+	const btnClick = (url: string) => {
+		return () => {
+			history.push(url)
+		}
+	}
 	return (
-		<div className="createBody">
-			<div className="c_title">
-				<input placeholder="请输入标题"></input>
+		<div className="createHtml">
+			<div className="createTitle">
+				<div className="t_left" onClick={btnClick('/index')}></div>
+				<div className={`title`}>写文章</div>
+				<div
+					className="save_btn"
+					onClick={(e) => {
+						saveData()
+					}}
+				>
+					<div className="btn">发布</div>
+				</div>
 			</div>
-			<div className="c_type">
-				<Tag></Tag>
+			<div className="createBody">
+				<div className="c_title">
+					<input
+						placeholder="请输入标题"
+						ref={inputRef}
+						onBlur={(ev) => {
+							onblur()
+						}}
+					></input>
+				</div>
+				<div className="c_type">
+					<Tag tagList={tagList} setTagList={setTagList}></Tag>
+				</div>
+				<div className="createContent">
+					<EditMarkDown text={text} setText={setText}></EditMarkDown>
+				</div>
+				<Prompt message={leaveMessage}></Prompt>
 			</div>
-			<div className="createContent">
-				<EditMarkDown text={text} setText={setText}></EditMarkDown>
-			</div>
-			<Prompt message={leaveMessage}></Prompt>
 		</div>
 	)
 }
