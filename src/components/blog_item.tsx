@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
 import showdownHighlight from 'showdown-highlight'
+import { withRouter } from 'react-router-dom'
 import '../assets/less/blog_item.less'
 interface Blog {
 	title: string
@@ -9,15 +10,23 @@ interface Blog {
 	create_time: string
 	comment_count: string
 }
-const BlogItem = (Blog: any) => {
+const BlogItem = ({ history, Blog }: any) => {
 	const [showDetail, setShowDetail] = useState(false)
-	const obj = Blog.Blog
+	const obj = Blog
 	let converter = new showdown.Converter({
 		extensions: [showdownHighlight],
 	})
+	const goDetail = (obj: any) => {
+		history.push('/blogDetail/' + obj.id)
+	}
 	const Item = () => {
 		return (
-			<div className="blog">
+			<div
+				className="blog"
+				onClick={(e) => {
+					goDetail(obj)
+				}}
+			>
 				<header>{obj.title}</header>
 				{showDetail ? (
 					<div className="detail">
@@ -78,4 +87,4 @@ const BlogItem = (Blog: any) => {
 	}
 	return <Item />
 }
-export default BlogItem
+export default withRouter(BlogItem)

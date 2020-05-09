@@ -4,6 +4,8 @@ import Title from '../components/title'
 import index from '../pages/index'
 import blogList from '../pages/blogList'
 import createBlog from '../pages/createBlog'
+import blogDetail from '../pages/blogDetail'
+
 import '../assets/less/layout.less'
 import { Route } from 'react-router-dom'
 import AnimatedSwitch from './AnimatedSwitch'
@@ -15,11 +17,12 @@ const Layout = () => {
 		<StoreContext.Provider value={store}>
 			<div className="app">
 				<BgUrl></BgUrl>
-				{/* <Title></Title> */}
+				<Title></Title>
 				<AnimatedSwitch>
 					<Route exact path="/" component={index} />
 					<Route path="/index" component={index} />
 					<Route path="/blogList" component={blogList} />
+					<Route path="/blogDetail/:id" component={blogDetail} />
 					<Route path="/createBlog" component={createBlog} />
 				</AnimatedSwitch>
 			</div>
