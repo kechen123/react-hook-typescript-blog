@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useMappedState } from 'redux-react-hook'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { BackImage } from '../redux/Stores'
 import '../assets/less/title.less'
 import { withRouter } from 'react-router-dom'
@@ -75,15 +76,19 @@ const Title = ({ history }: any) => {
 			)
 		} else {
 			return (
-				<div className="t_body">
-					<div className="t_content">
-						<div className="t_left" onClick={btnClick('/index')}></div>
-						{isEdit ? <div className={`title`}>写文章</div> : ''}
+				<TransitionGroup className="page">
+					<CSSTransition key={1} classNames="titleFade" timeout={300}>
+						<div className="t_body">
+							<div className="t_content">
+								<div className="t_left" onClick={btnClick('/index')}></div>
+								{isEdit ? <div className={`title`}>写文章</div> : ''}
 
-						<RightContent />
-						<div className="t_right_l" onClick={toggle}></div>
-					</div>
-				</div>
+								<RightContent />
+								<div className="t_right_l" onClick={toggle}></div>
+							</div>
+						</div>
+					</CSSTransition>
+				</TransitionGroup>
 			)
 		}
 	}

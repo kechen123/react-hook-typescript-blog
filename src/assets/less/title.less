@@ -1,11 +1,11 @@
 .t_body {
-  position: absolute;
+  // position: absolute;
   z-index: 1;
   width: 100%;
   font-size: 24px;
   color: #FFF;
   line-height: 50px;
-  top: 0;
+  // top: 0;
 
   //background: #f1f1f15c;
   //border-bottom: solid 1px #999;
@@ -19,7 +19,7 @@
     justify-content: space-between;
 
     .t_left {
-      background: url(../image/logo_title.png) no-repeat 100%;
+      // background: url(../image/logo_title.png) no-repeat 100%;
       background-size: 120px 61px;
       cursor: pointer;
       width: 120px;
@@ -134,6 +134,28 @@
     }
   }
 
+}
+
+// 帧动画
+.titleFade-enter {
+  opacity: 0;
+  transform: translate3d(110px, 50px, 0);
+}
+
+.titleFade-enter-active {
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 600ms, transform 600ms;
+}
+
+.titleFade-exit {
+  opacity: 0;
+}
+
+.titleFade-exit-active {
+  opacity: 0;
+  transform: translate3d(0, 50px, 0);
+  transition: opacity 600ms, transform 600ms;
 }
 
 .t_menus {

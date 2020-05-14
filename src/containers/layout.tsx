@@ -5,6 +5,7 @@ import index from '../pages/index'
 import blogList from '../pages/blogList'
 import createBlog from '../pages/createBlog'
 import blogDetail from '../pages/blogDetail'
+// import blogDetail from '@pages/blogDetail'
 
 import '../assets/less/layout.less'
 import { Route } from 'react-router-dom'

@@ -22,8 +22,8 @@ const Index = () => {
 	return (
 		<div className="h_body">
 			<div className="h_content">
-				<div className="h_name ">柯大晨</div>
-				<div className="h_sign" dangerouslySetInnerHTML={{ __html: sign }}></div>
+				{/* <div className="h_name ">柯大晨</div> */}
+				{/* <div className="h_sign" dangerouslySetInnerHTML={{ __html: sign }}></div> */}
 			</div>
 		</div>
 	)
