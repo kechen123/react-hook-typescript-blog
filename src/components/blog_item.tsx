@@ -3,7 +3,7 @@ import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
 import showdownHighlight from 'showdown-highlight'
 import { withRouter } from 'react-router-dom'
-import '../assets/less/blog_item.less'
+import '@less/blog_item.less'
 interface Blog {
 	title: string
 	introduction: string

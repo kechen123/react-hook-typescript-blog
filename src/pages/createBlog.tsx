@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { withRouter, Prompt } from 'react-router-dom'
 import { useDispatch } from 'redux-react-hook'
-import EditMarkDown from '../components/edit_markdown'
-import { postData, getData } from '../http/request'
-import Tag from '../components/tag'
-import '../assets/less/createBlog.less'
+import EditMarkDown from '@components/edit_markdown'
+import { postData, getData } from '@http/request'
+import Tag from '@components/tag'
+import '@less/createBlog.less'
 const txt = `
 # 一级标题
 ## 二级标题

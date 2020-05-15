@@ -3,7 +3,7 @@ import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
 import showdownHighlight from 'showdown-highlight'
 
-import '../assets/less/edit_markdown.less'
+import '@less/edit_markdown.less'
 const options = {
 	omitExtraWLInCodeBlocks: true,
 	noHeaderId: true,

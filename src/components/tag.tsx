@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import '../assets/less/tag.less'
+import '@less/tag.less'
 import tagsJson from '../assets/tags/tags.json'
 
 const Tag = (props: any) => {

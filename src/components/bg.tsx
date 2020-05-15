@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useMappedState, useDispatch } from 'redux-react-hook'
-import { BackImage } from '../redux/Stores'
-import { getData } from '../http/request'
+import { BackImage } from '@redux/Stores'
+import { getData } from '@http/request'
 import { imageUrl } from '../config.json'
-import storage from '../common/cookie'
-import util from '../common/util'
-import '../assets/less/bg.less'
+import storage from '@common/cookie'
+import util from '@common/util'
+import '@less/bg.less'
 const mapState = (state: BackImage) => ({
 	image: state.image,
 })

@@ -1,13 +1,13 @@
 .t_body {
-  // position: absolute;
+  position: absolute;
   z-index: 1;
   width: 100%;
   font-size: 24px;
   color: #FFF;
   line-height: 50px;
-  // top: 0;
+  top: 0;
+  background: #16202f;
 
-  //background: #f1f1f15c;
   //border-bottom: solid 1px #999;
   .t_content {
     padding: 20px 30px 5px 30px;
@@ -78,6 +78,7 @@
       }
 
       li {
+        margin-top: 0px;
         list-style-type: none;
         height: 40px;
         line-height: 40px;
@@ -101,6 +102,40 @@
 
         }
       }
+
+      .tab1 {
+        animation: myfirst 100ms;
+        -moz-animation: myfirst 100ms;
+        -webkit-animation: myfirst 100ms;
+        -o-animation: myfirst 100ms;
+      }
+
+      .tab2 {
+        animation: myfirst 400ms;
+        -moz-animation: myfirst 400ms;
+        -webkit-animation: myfirst 400ms;
+        -o-animation: myfirst 400ms;
+      }
+
+      .tab3 {
+        animation: myfirst 600ms;
+        -moz-animation: myfirst 600ms;
+        -webkit-animation: myfirst 600ms;
+        -o-animation: myfirst 600ms;
+      }
+
+      @keyframes myfirst {
+        from {
+          opacity: 0;
+          transform: translate3d(-10px, -30px, 0);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0px, 0);
+        }
+      }
+
 
       li:hover,
       .active {

@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom'
 import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
 import showdownHighlight from 'showdown-highlight'
-import { getData } from '../http/request'
-import '../assets/less/blog_detail.less'
+import { getData } from '@http/request'
+import '@less/blog_detail.less'
 const BlogDetail = ({ history }: any) => {
 	const pathname = history.location.pathname
 	const id = pathname.substring(pathname.lastIndexOf('/') + 1, pathname.length)
