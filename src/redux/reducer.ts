@@ -30,6 +30,13 @@ export default function reducer(state: BackImage | null | undefined, action: Act
 				},
 			}
 		}
+		case 'firstPage': {
+			return {
+				...state,
+				firstPage: action.first,
+			}
+		}
+
 		default:
 			return state
 	}

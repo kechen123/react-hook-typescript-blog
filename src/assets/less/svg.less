@@ -1,0 +1,36 @@
+#symbol {
+  width: 300px;
+  height: 300px;
+}
+
+#path {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 500;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.st0 {
+  fill: none;
+  stroke: white;
+  stroke-miterlimit: 10;
+}
+
+.st1 {
+  fill: none;
+  stroke: white;
+  stroke-width: 0.5;
+  stroke-miterlimit: 10;
+}
+
+svg #path {
+  animation: dash 4s linear infinite;
+}

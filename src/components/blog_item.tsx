@@ -19,7 +19,7 @@ const BlogItem = ({ history, Blog }: any) => {
 	const goDetail = (obj: any) => {
 		history.push('/blogDetail/' + obj.id)
 	}
-	const Item = () => {
+	const Item1111 = () => {
 		return (
 			<div
 				className="blog"
@@ -81,6 +81,41 @@ const BlogItem = ({ history, Blog }: any) => {
 					) : (
 						''
 					)}
+				</footer>
+			</div>
+		)
+	}
+
+	const Item = () => {
+		return (
+			<div
+				className="card"
+				onClick={(e) => {
+					goDetail(obj)
+				}}
+			>
+				<header className="card__thumb">
+					<a href="#">
+						<img src={require('../assets/image/card.jpg')} />
+					</a>
+					<img alt="博客图片" src={require('../assets/image/card.jpg')} />
+				</header>
+				<div className="card__body">
+					<h2 className="card__title">
+						<a href="#">{obj.title}</a>
+					</h2>
+					<p
+						className="card__description"
+						dangerouslySetInnerHTML={{ __html: converter.makeHtml(obj.introduction) }}
+					></p>
+				</div>
+
+				<footer className="card__footer">
+					<span className="icon ion-clock"></span> {obj.create_time}
+					<span className="icon ion-clock">{obj.create_time}</span>
+					<span className="icon ion-chatbox"></span>
+					<a href="#"> {obj.comment_count} 评论</a>
+					<span className="icon "> {obj.comment_count} 评论</span>
 				</footer>
 			</div>
 		)

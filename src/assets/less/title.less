@@ -1,219 +1,195 @@
 .t_body {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  font-size: 24px;
-  color: #FFF;
-  line-height: 50px;
-  top: 0;
-  background: #16202f;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	font-size: 24px;
+	color: #fff;
+	line-height: 50px;
+	top: 0;
+	background: #16202f;
 
-  //border-bottom: solid 1px #999;
-  .t_content {
-    padding: 20px 30px 5px 30px;
-    margin: 0 auto;
-    display: flex;
-    display: -webkit-flex;
-    /* Safari */
-    flex-wrap: wrap;
-    justify-content: space-between;
+	//border-bottom: solid 1px #999;
+	.t_content {
+		padding: 20px 30px 5px 30px;
+		margin: 0 auto;
+		display: flex;
+		display: -webkit-flex;
+		/* Safari */
+		flex-wrap: wrap;
+		justify-content: space-between;
 
-    .t_left {
-      // background: url(../image/logo_title.png) no-repeat 100%;
-      background-size: 120px 61px;
-      cursor: pointer;
-      width: 120px;
-      height: 61px;
-      _background: none;
-    }
+		.t_left {
+			// background: url(../image/logo_title.png) no-repeat 100%;
+			background-size: 120px 61px;
+			cursor: pointer;
+			width: 120px;
+			height: 61px;
+			_background: none;
+			animation: myfirst 100ms;
+			-moz-animation: myfirst 100ms;
+			-webkit-animation: myfirst 100ms;
+			-o-animation: myfirst 100ms;
+		}
 
-    .title {
-      font-weight: 400;
-      font-size: 34px;
-    }
+		.title {
+			font-weight: 400;
+			font-size: 34px;
+		}
 
-    .save_btn {
-      .btn {
-        color: #fff;
-        background-color: #098c5b;
-        border-color: #00965e;
-        font-weight: 400;
-        text-align: center;
-        border: 1px solid transparent;
-        vertical-align: middle;
-        font-size: 20px;
-        line-height: 20px;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+		.save_btn {
+			.btn {
+				color: #fff;
+				background-color: #098c5b;
+				border-color: #00965e;
+				font-weight: 400;
+				text-align: center;
+				border: 1px solid transparent;
+				vertical-align: middle;
+				font-size: 20px;
+				line-height: 20px;
+				padding: 10px 20px;
+				border-radius: 4px;
+				cursor: pointer;
+			}
 
-      .btn:hover {
-        color: #fff;
-        background-color: #007046;
-        border-color: #00633e;
-      }
+			.btn:hover {
+				color: #fff;
+				background-color: #007046;
+				border-color: #00633e;
+			}
+		}
 
-    }
+		.tabs {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transform: rotateY(-10px);
 
-    .tabs {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+			a {
 
-      a {
+				@media print,
+				screen and (max-width: 48em) {
+					margin-right: 0;
+				}
 
-        @media print,
-        screen and (max-width: 48em) {
-          margin-right: 0;
-        }
+				padding: 0 10px;
+				cursor: pointer;
+				font-size: 16px;
+				line-height: 30px;
+				height: 30px;
+				margin-top: 15px;
+				color: #fff;
+			}
 
-        padding: 0 10px;
-        cursor:pointer;
-        font-size: 16px;
-        line-height: 30px;
-        height: 30px;
-        margin-top: 15px;
-        color: #FFF;
-      }
+			li {
+				margin-top: 0px;
+				list-style-type: none;
+				height: 40px;
+				line-height: 40px;
+				padding: 0 15px;
+				cursor: pointer;
+				position: relative;
+				font-size: 18px;
+				color: #fff;
 
-      li {
-        margin-top: 0px;
-        list-style-type: none;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 15px;
-        cursor: pointer;
-        position: relative;
-        font-size: 18px;
-        color: #FFF;
+				&::after {
+					content: '';
+					width: 0;
+					height: 2px;
+					background-color: #fff;
+					position: absolute;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					margin: auto;
+					transition: width 0.4s;
+				}
+			}
 
-        &::after {
-          content: "";
-          width: 0;
-          height: 2px;
-          background-color: #FFF;
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          margin: auto;
-          transition: width .4s;
+			.tab1 {
+				opacity: 0;
+				animation: myfirst 1s forwards;
+				animation-delay: 0ms;
+			}
 
-        }
-      }
+			.tab2 {
+				opacity: 0;
+				animation: myfirst 1s forwards;
+				animation-delay: 100ms;
+			}
 
-      .tab1 {
-        animation: myfirst 100ms;
-        -moz-animation: myfirst 100ms;
-        -webkit-animation: myfirst 100ms;
-        -o-animation: myfirst 100ms;
-      }
+			.tab3 {
+				opacity: 0;
+				animation: myfirst 1s forwards;
+				animation-delay: 200ms;
+			}
 
-      .tab2 {
-        animation: myfirst 400ms;
-        -moz-animation: myfirst 400ms;
-        -webkit-animation: myfirst 400ms;
-        -o-animation: myfirst 400ms;
-      }
+			li:hover,
+			.active {
+				&::after {
+					width: 100%;
+				}
+			}
+		}
 
-      .tab3 {
-        animation: myfirst 600ms;
-        -moz-animation: myfirst 600ms;
-        -webkit-animation: myfirst 600ms;
-        -o-animation: myfirst 600ms;
-      }
+		@keyframes myfirst {
+			from {
+				opacity: 0;
+				transform: translateY(-50%) translate3d(-10px, 0px, 0px) skewX(10deg);
+			}
 
-      @keyframes myfirst {
-        from {
-          opacity: 0;
-          transform: translate3d(-10px, -30px, 0);
-        }
+			to {
+				opacity: 1;
+				transform: translateY(0) translate3d(0, 0px, 0) skewX(0deg);
+			}
+		}
 
-        to {
-          opacity: 1;
-          transform: translate3d(0, 0px, 0);
-        }
-      }
+		.t_right_l {
+			width: 40px;
+			height: 40px;
+			background: url('../image/t_liebiao.png') center;
+			background-size: cover;
+			display: none;
+		}
 
+		@media print,
+		screen and (max-width: 48em) {
+			.tabs {
+				display: none;
+			}
 
-      li:hover,
-      .active {
-        &::after {
-          width: 100%;
-        }
-      }
-    }
+			.t_right_l {
+				display: block;
+			}
 
-    .t_right_l {
-      width: 40px;
-      height: 40px;
-      background: url("../image/t_liebiao.png") center;
-      background-size: cover;
-      display: none;
-    }
-
-    @media print,
-    screen and (max-width: 48em) {
-      .tabs {
-        display: none;
-      }
-
-      .t_right_l {
-        display: block;
-      }
-
-      .t_content {
-        padding: 20px 30px 5px 30px;
-      }
-    }
-  }
-
-}
-
-// 帧动画
-.titleFade-enter {
-  opacity: 0;
-  transform: translate3d(110px, 50px, 0);
-}
-
-.titleFade-enter-active {
-  opacity: 0;
-  transform: translate3d(0, 0, 0);
-  transition: opacity 600ms, transform 600ms;
-}
-
-.titleFade-exit {
-  opacity: 0;
-}
-
-.titleFade-exit-active {
-  opacity: 0;
-  transform: translate3d(0, 50px, 0);
-  transition: opacity 600ms, transform 600ms;
+			.t_content {
+				padding: 20px 30px 5px 30px;
+			}
+		}
+	}
 }
 
 .t_menus {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, .86);
-  display: -webkit-flex;
-  /* Safari */
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 65% 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	background: rgba(0, 0, 0, 0.86);
+	display: -webkit-flex;
+	/* Safari */
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 65% 0;
 
-  .menu_item {
-    color: #FFF;
-    font-size: 14px;
-    text-align: center;
-    width: 100%;
-    padding: 10px 0;
-  }
+	.menu_item {
+		color: #fff;
+		font-size: 14px;
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+	}
 }

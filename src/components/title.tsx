@@ -3,13 +3,16 @@ import { useMappedState } from 'redux-react-hook'
 import { BackImage } from '@redux/Stores'
 import '@less/title.less'
 import { withRouter } from 'react-router-dom'
+import storage from '../common/cookie'
 const mapState = (state: BackImage) => ({
 	isEdit: state.isEdit,
 })
+let firstPageEnd = false
 const Title = ({ history }: any) => {
 	const { isEdit } = useMappedState(mapState)
 	const [active, setActive] = useState('')
 	const [showMenu, setShowMenu] = useState(false)
+
 	const toggle = () => {
 		setShowMenu(!showMenu)
 	}
@@ -22,6 +25,9 @@ const Title = ({ history }: any) => {
 	useEffect(() => {
 		let router = history.location.pathname
 		setActive(router)
+		// setTimeout(() => {
+		// 	firstPageEnd = true
+		// }, 2000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [history.location.pathname])
 	const RightContent = () => {
@@ -35,20 +41,18 @@ const Title = ({ history }: any) => {
 			return (
 				<div className="tabs">
 					<li
-						style={{ transitionDelay: '0s' }}
-						className={`tab1 ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
+						className={`${!firstPageEnd ? 'tab1' : ''} ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
 						onClick={btnClick('/blogList')}
 					>
-						博客
+						blog
 					</li>
 					<li
-						style={{ transitionDelay: '1s' }}
-						className={`tab2 ${active.indexOf('/index') > -1 ? 'active' : ''}`}
+						className={`${!firstPageEnd ? 'tab2' : ''} ${active.indexOf('/index') > -1 ? 'active' : ''}`}
 						onClick={btnClick('/index')}
 					>
-						联系
+						message
 					</li>
-					<li className="tab3" style={{ transitionDelay: '2s' }}>
+					<li className={`${!firstPageEnd ? 'tab3' : ''}`}>
 						<a href="https://github.com/kechen123" target="view_window">
 							GitHub
 						</a>
@@ -57,6 +61,7 @@ const Title = ({ history }: any) => {
 			)
 		}
 	}
+
 	const IsMobil = () => {
 		if (isEdit) {
 			return <div></div>
@@ -65,19 +70,19 @@ const Title = ({ history }: any) => {
 			return (
 				<div className="t_menus" onClick={toggle}>
 					<div className="menu_item" onClick={btnClick('/index')}>
-						首页
+						index
 					</div>
 					<div
 						className={`menu_item ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
 						onClick={btnClick('/blogList')}
 					>
-						博客
+						blog
 					</div>
 					<div
 						className={`menu_item ${active.indexOf('/index') > -1 ? 'active' : ''}`}
 						onClick={btnClick('/index')}
 					>
-						关于
+						about
 					</div>
 				</div>
 			)

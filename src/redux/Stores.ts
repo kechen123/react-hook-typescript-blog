@@ -6,6 +6,7 @@ export interface BackImage {
 	image: string
 	Content: Content
 	isEdit: boolean
+	firstPage: boolean
 }
 
 export interface Content {
@@ -27,6 +28,11 @@ export type Action =
 			type: 'set_content'
 			content: JSON
 	  }
+	| {
+			type: 'firstPage'
+			first: boolean
+	  }
+
 const isEdit = storage.getSession('isEdit') || false
 export const INITIAL_STATE: BackImage = {
 	image: '',
@@ -36,6 +42,7 @@ export const INITIAL_STATE: BackImage = {
 		content: '',
 	},
 	isEdit: isEdit,
+	firstPage: false,
 }
 export function makeStore() {
 	return createStore(reducer, INITIAL_STATE)

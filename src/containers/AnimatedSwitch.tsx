@@ -5,11 +5,12 @@ import '@less/AnimatedSwitch.less'
 
 const AnimatedSwitch = (props: any) => {
 	const { children } = props
+	console.log(props)
 	return (
 		<Route
 			render={({ location }) => (
 				<TransitionGroup className="page">
-					<CSSTransition key={location.key} classNames={props.type || 'fade'} timeout={props.duration || 300}>
+					<CSSTransition key={location.key} classNames="fade" timeout={props.duration || 300}>
 						<Switch location={location}>{children}</Switch>
 					</CSSTransition>
 				</TransitionGroup>
