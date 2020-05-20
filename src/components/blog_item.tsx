@@ -19,74 +19,7 @@ const BlogItem = ({ history, Blog }: any) => {
 	const goDetail = (obj: any) => {
 		history.push('/blogDetail/' + obj.id)
 	}
-	const Item1111 = () => {
-		return (
-			<div
-				className="blog"
-				onClick={(e) => {
-					goDetail(obj)
-				}}
-			>
-				<header>{obj.title}</header>
-				{showDetail ? (
-					<div className="detail">
-						<img alt="博客图片" src={require('../assets/image/card.jpg')} />
-						<div dangerouslySetInnerHTML={{ __html: converter.makeHtml(obj.introduction) }}></div>
-					</div>
-				) : (
-					<div className="content">
-						<div className="cover">
-							<div className="cover_inner">
-								<img alt="博客图片" src={require('../assets/image/card.jpg')} />
-							</div>
-						</div>
-						<div className="inner">
-							<div
-								className="text"
-								dangerouslySetInnerHTML={{ __html: converter.makeHtml(obj.introduction) }}
-							></div>
-							<div
-								className="btn"
-								onClick={(e) => {
-									setShowDetail(true)
-								}}
-							>
-								阅读全文 <span className="iconfont iconpinglun"></span>
-							</div>
-						</div>
-					</div>
-				)}
-				<footer>
-					<div>
-						<span className="icon iconfont iconshijian"></span>
-						发表时间 {obj.create_time}
-					</div>
-					<div>
-						<span className="icon iconfont ion-chatbox"></span>
-					</div>
-					<div>
-						<span className="icon iconfont iconpinglun"> </span>
-						{obj.comment} 评论
-					</div>
-					{showDetail ? (
-						<div
-							className="retract"
-							onClick={(e) => {
-								setShowDetail(false)
-							}}
-						>
-							<span className="icon iconfont iconpinglun"> </span>
-							收起
-						</div>
-					) : (
-						''
-					)}
-				</footer>
-			</div>
-		)
-	}
-
-	const Item = () => {
+	const Item11 = () => {
 		return (
 			<div
 				className="card"
@@ -117,6 +50,49 @@ const BlogItem = ({ history, Blog }: any) => {
 					<a href="#"> {obj.comment_count} 评论</a>
 					<span className="icon "> {obj.comment_count} 评论</span>
 				</footer>
+			</div>
+		)
+	}
+	const Item = () => {
+		return (
+			<div
+				className="card"
+				onClick={(e) => {
+					goDetail(obj)
+				}}
+			>
+				<div className="content">
+					<header className="card__thumb">
+						<div className="header">
+							<div className="type">
+								<span className="iconfont iconReact"></span>
+							</div>
+
+							<div className="link">
+								<span className="iconfont iconnodejs"></span>
+							</div>
+						</div>
+
+						<div className="body">
+							<h4 className="title">{obj.title}</h4>
+							<p className="describe">{obj.title}</p>
+						</div>
+					</header>
+
+					<footer className="card__footer">
+						<ul>
+							<li>
+								<span className="icon ion-clock"></span> {obj.create_time}
+							</li>
+							<li>
+								<span className="icon ion-chatbox"></span>
+							</li>
+							<li>
+								<span className="icon "> {obj.comment_count} 评论</span>
+							</li>
+						</ul>
+					</footer>
+				</div>
 			</div>
 		)
 	}

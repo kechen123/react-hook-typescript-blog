@@ -18,6 +18,7 @@ const Title = ({ history }: any) => {
 	}
 	const btnClick = (url: string) => {
 		return () => {
+			firstPageEnd = true
 			setActive(url)
 			history.push(url)
 		}
@@ -25,9 +26,6 @@ const Title = ({ history }: any) => {
 	useEffect(() => {
 		let router = history.location.pathname
 		setActive(router)
-		// setTimeout(() => {
-		// 	firstPageEnd = true
-		// }, 2000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [history.location.pathname])
 	const RightContent = () => {

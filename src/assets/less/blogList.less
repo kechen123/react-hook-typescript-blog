@@ -3,6 +3,7 @@
   margin-top: 80px;
   min-height: calc(100% - 80px);
   position: relative;
+  background: #16202f;
 
   .b_body {
     position: relative;
@@ -11,7 +12,7 @@
     /* Safari */
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0px auto;
     height: 100%;
     overflow: hidden;
@@ -22,8 +23,11 @@
     }
 
     .b_content {
-      width: 70%;
-      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      position: relative;
+      gap: 15px;
+      margin-top: 20px;
 
       @media print,
       screen and (max-width: 48em) {
@@ -48,15 +52,15 @@
     line-height: 66px;
     text-align: center;
     font-size: 30px;
-    color: #c0e8ec9e;
+    color: rgb(100, 255, 218);
     position: absolute;
     right: 200px;
     top: 200px;
-    border: solid 1px #c0e8ec9e;
+    border: solid 1px rgb(100, 255, 218);
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    background: #c0e8ec2b;
+    background: #282f26;
   }
 
   .iconshuxie:hover {
