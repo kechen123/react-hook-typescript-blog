@@ -1,54 +1,57 @@
-.h_body {
-  //background: url("../image/index_bg.jpeg");
-  //background-size: cover;
+section {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 
-  .h_content {
-    margin: 0px auto;
-    padding-top: 200px;
-    text-align: center;
+  .info {
+    width: 1000px;
+    margin: 200px auto;
 
-    @media print,
-    screen and (max-width: 48em) {
-      margin: 50px auto;
+    h1 {
+      color: rgb(100, 255, 218);
+      font-size: 16px;
+      font-weight: normal;
+      margin: 0px 0px 20px 3px;
+      opacity: 0;
+      animation: info 100ms forwards;
+      animation-delay: 100ms;
     }
 
-    img {
-      width: 180px;
-      height: 180px;
+    h2 {
+      font-weight: 600;
+      color: rgb(204, 214, 246);
+      font-size: 80px;
+      line-height: 1.1;
+      margin: 0px;
+      opacity: 0;
+      animation: info 100ms forwards;
+      animation-delay: 140ms;
     }
 
-    .h_name {
-      font-size: 52px;
-      margin: 30px;
-      color: #FFF;
-      font-weight: bold;
+    h3 {
+      font-size: 80px;
+      line-height: 1.1;
+      font-weight: 600;
+      color: rgb(136, 146, 176);
+      margin: 0px 0px 10px;
+      opacity: 0;
+      animation: info 100ms forwards;
+      animation-delay: 180ms;
     }
 
-    .h_sign {
-      color: #FFF;
-      font-size: 22px;
-      margin: 30px auto;
-    }
+    @keyframes info {
+      from {
+        opacity: 0;
+        transform: translateY(50px) translate3d(-10px, 0px, 0px) skewX(3deg);
+      }
 
-
-
-    .h_btn {
-      display: block;
-      margin: 80px auto;
-      width: 145px;
-      height: 45px;
-      line-height: 45px;
-      border-radius: 10px;
-      background: #000;
-      color: #FFF;
-      font-size: 20px;
-      text-align: center;
-      cursor: pointer;
+      to {
+        opacity: 1;
+        transform: translateY(0) translate3d(0, 0px, 0) skewX(0deg);
+      }
     }
   }
+
 }
