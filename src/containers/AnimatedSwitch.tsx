@@ -5,7 +5,7 @@ import '@less/AnimatedSwitch.less'
 
 const AnimatedSwitch = (props: any) => {
 	const { children } = props
-	console.log(props)
+	console.log('AnimatedSwitch>>>>>...')
 	return (
 		<Route
 			render={({ location }) => (

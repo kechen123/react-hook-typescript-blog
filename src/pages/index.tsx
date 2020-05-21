@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '@less/index.less'
 const Index = () => {
+	console.log('index>>>>>>>>>>..')
 	return (
 		<section>
 			<div className="info">

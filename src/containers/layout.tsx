@@ -13,6 +13,7 @@ import { StoreContext } from 'redux-react-hook'
 import { makeStore } from '@redux/Stores'
 const store = makeStore()
 const Layout = () => {
+	console.log('layout>>>>>>>>>>>')
 	return (
 		<StoreContext.Provider value={store}>
 			<div className="app">
