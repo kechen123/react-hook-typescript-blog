@@ -1,9 +1,9 @@
 import axios from './api'
-import { useState, useEffect } from 'react'
+import { useReducer, useState, useEffect } from 'react'
 import { requestUrl } from '../config.json'
 
-export const useGetPage = (initialUrl: string, initialParams: any) => {
-	const [data, setData] = useState({})
+export const useGetPage = (initialUrl: string, initialParams: any, initialData: any) => {
+	const [data, setData] = useState(initialData)
 	const [params, setParams] = useState(initialParams)
 	const [isLoading, setIsLoading] = useState(true)
 	const [isError, setIsError] = useState(false)
@@ -27,7 +27,67 @@ export const useGetPage = (initialUrl: string, initialParams: any) => {
 	}, [params])
 	return [{ data, isLoading, isError } as any, setParams]
 }
+const dataFetchReducer = (state: any, action: any) => {
+	switch (action.type) {
+		case 'FETCH_INIT':
+			return { ...state, isLoading: true, isError: false }
+		case 'FETCH_SUCCESS':
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				data: action.payload,
+			}
+		case 'FETCH_FAILURE':
+			return {
+				...state,
+				isLoading: false,
+				isError: true,
+			}
+		default:
+			throw new Error()
+	}
+}
 
+export const useDataApi = (initialUrl: string, initialParams: any, initialData: any) => {
+	const [url, setUrl] = useState(initialUrl)
+	const [params, setParams] = useState(initialParams)
+	const [state, dispatch] = useReducer(dataFetchReducer, {
+		isLoading: false,
+		isError: false,
+		data: initialData,
+	})
+
+	useEffect(() => {
+		let didCancel = false
+		const fetchData = async () => {
+			dispatch({ type: 'FETCH_INIT' })
+
+			try {
+				const result = await axios({
+					url: requestUrl + url,
+					method: 'get',
+					params: params,
+				})
+				if (!didCancel) {
+					dispatch({ type: 'FETCH_SUCCESS', payload: result })
+				}
+			} catch (error) {
+				if (!didCancel) {
+					dispatch({ type: 'FETCH_FAILURE' })
+				}
+			}
+		}
+
+		fetchData()
+
+		return () => {
+			didCancel = true
+		}
+	}, [params])
+
+	return [state, setParams]
+}
 export const getData = async (initialUrl: string, initialParams?: any) => {
 	return await axios({
 		url: requestUrl + initialUrl,
