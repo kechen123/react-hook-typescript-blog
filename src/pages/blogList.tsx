@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useDispatch } from 'redux-react-hook'
 import { withRouter } from 'react-router-dom'
 import BlogItem from '@components/blog_item'
 import '@assets/icon/iconfont.css'
 import '@less/blogList.less'
 import { useGetPage } from '../http/request'
+
 const BlogList = ({ history }: any) => {
-	const [currentPage] = useState(0)
-	const [pageSize] = useState(8)
-	const [{ data }] = useGetPage('/ke/blog', {
-		page: currentPage + 1,
+	const [currentPage] = useState(1)
+	const [pageSize] = useState(6)
+	const [{ data }, setParams] = useGetPage('/ke/blog', {
+		page: currentPage,
 		size: pageSize,
 	})
 	const dispatch = useDispatch()
-
+	console.log('bloglist>>>>>>>>>>>>')
 	let result: any[] = []
 	if (JSON.stringify(data) !== '{}') {
-		console.log(data)
 		if (data.code === 200) {
 			for (let i = 0; i < data.data.length; i++) {
 				if (data.data[i].introduction && data.data[i].introduction.length > 150) {
@@ -24,7 +24,7 @@ const BlogList = ({ history }: any) => {
 				}
 			}
 		}
-		result = data.data
+		result = result.concat(data.data)
 	}
 
 	const List = () => {
@@ -47,11 +47,24 @@ const BlogList = ({ history }: any) => {
 			history.push('/createBlog')
 		}
 	}
+	const getMore = () => {
+		setParams({
+			page: currentPage + 1,
+			size: pageSize,
+		})
+	}
 	return (
 		<div className="b_html">
 			<div className="b_body">
 				<List />
-				<div className="b_type"></div>
+				<button
+					onClick={(e) => {
+						getMore()
+					}}
+					className="b_more"
+				>
+					show more
+				</button>
 			</div>
 			<i onClick={btnClick()} className="iconfont iconshuxie"></i>
 		</div>

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 let firstPageEnd = false
 const Title = ({ history }: any) => {
-	const [active, setActive] = useState('')
+	const [active, setActive] = useState(history.location.pathname)
 	const [showMenu, setShowMenu] = useState(false)
 	console.log('title>>>>>>>>>>>.')
 	const toggle = () => {
