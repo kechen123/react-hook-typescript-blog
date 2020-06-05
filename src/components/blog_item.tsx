@@ -13,6 +13,8 @@ interface Blog {
 const BlogItem = ({ history, Blog }: any) => {
 	const [showDetail, setShowDetail] = useState(false)
 	const obj = Blog
+	console.log(obj)
+	const introduction = JSON.parse(obj.introduction)
 	let converter = new showdown.Converter({
 		extensions: [showdownHighlight],
 	})
@@ -75,7 +77,7 @@ const BlogItem = ({ history, Blog }: any) => {
 
 						<div className="body">
 							<h4 className="title">{obj.title}</h4>
-							<p className="describe">{obj.title}</p>
+							<p className="describe">{introduction.data}</p>
 						</div>
 					</header>
 

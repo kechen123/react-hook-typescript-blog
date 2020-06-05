@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Layout from '../containers/layout'
 const getRoute = () => {
 	return (
-		<div>
+		<Fragment>
 			<Layout />
-		</div>
+		</Fragment>
 	)
 }
 export default getRoute

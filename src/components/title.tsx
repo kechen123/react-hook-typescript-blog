@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react'
+import { useMappedState } from 'redux-react-hook'
 import { BackImage } from '@redux/Stores'
 import '@less/title.less'
 import { withRouter } from 'react-router-dom'
-
-let firstPageEnd = false
-const Title = ({ history }: any) => {
+const mapState = (state: BackImage) => ({
+	isEdit: state.isEdit,
+})
+interface Iprops {
+	scrollDirection: string
+	firstPageEnd: boolean
+	setFirstPageEnd: Function
+}
+const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any) => {
+	const { isEdit } = useMappedState(mapState)
 	const [active, setActive] = useState(history.location.pathname)
 	const [showMenu, setShowMenu] = useState(false)
-	console.log('title>>>>>>>>>>>.')
+	console.log('title-----scrollDirection>>>>' + scrollDirection)
 	const toggle = () => {
 		setShowMenu(!showMenu)
 	}
 	const btnClick = (url: string) => {
 		return () => {
-			firstPageEnd = true
+			setFirstPageEnd(true)
 			setActive(url)
 			history.push(url)
 		}
@@ -24,30 +32,41 @@ const Title = ({ history }: any) => {
 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// }, [history.location.pathname])
 	const RightContent = () => {
-		return (
-			<div className="tabs">
-				<li
-					className={`${!firstPageEnd ? 'tab1' : ''} ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
-					onClick={btnClick('/blogList')}
-				>
-					blog
-				</li>
-				<li
-					className={`${!firstPageEnd ? 'tab2' : ''} ${active.indexOf('/index') > -1 ? 'active' : ''}`}
-					onClick={btnClick('/index')}
-				>
-					message
-				</li>
-				<li className={`${!firstPageEnd ? 'tab3' : ''}`}>
-					<a href="https://github.com/kechen123" target="view_window">
-						GitHub
-					</a>
-				</li>
-			</div>
-		)
+		if (isEdit) {
+			return (
+				<div className="save_btn">
+					<div className="btn">发布</div>
+				</div>
+			)
+		} else {
+			return (
+				<div className="tabs">
+					<li
+						className={`${!firstPageEnd ? 'tab1' : ''} ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
+						onClick={btnClick('/blogList')}
+					>
+						blog
+					</li>
+					<li
+						className={`${!firstPageEnd ? 'tab2' : ''} ${active.indexOf('/index') > -1 ? 'active' : ''}`}
+						onClick={btnClick('/lifecycle')}
+					>
+						message
+					</li>
+					<li className={`${!firstPageEnd ? 'tab3' : ''}`}>
+						<a href="https://github.com/kechen123" target="view_window">
+							GitHub
+						</a>
+					</li>
+				</div>
+			)
+		}
 	}
 
 	const IsMobil = () => {
+		if (isEdit) {
+			return <div></div>
+		}
 		if (showMenu) {
 			return (
 				<div className="t_menus" onClick={toggle}>
@@ -70,9 +89,11 @@ const Title = ({ history }: any) => {
 			)
 		} else {
 			return (
-				<div className="t_body">
+				<div className={` ${scrollDirection != 'down' ? 'show' : 'hide'} t_body`}>
 					<div className="t_content">
 						<div className="t_left" onClick={btnClick('/index')}></div>
+						{isEdit ? <div className={`title`}>写文章</div> : ''}
+
 						<RightContent />
 						<div className="t_right_l" onClick={toggle}></div>
 					</div>

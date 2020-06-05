@@ -20,15 +20,16 @@ const BlogDetail = ({ history }: any) => {
 		})
 	}, [])
 	return (
-		<div className="blogDetail">
-			{blog ? (
-				<div className="detail">
-					<img alt="博客图片" src={require('../assets/image/card.jpg')} />
-					<div dangerouslySetInnerHTML={{ __html: converter.makeHtml(blog.introduction) }}></div>
-				</div>
-			) : (
-				''
-			)}
+		<div className="detailcontent">
+			<div className="blogDetail">
+				{blog ? (
+					<div className="detail">
+						<div dangerouslySetInnerHTML={{ __html: converter.makeHtml(blog.introduction) }}></div>
+					</div>
+				) : (
+					''
+				)}
+			</div>
 		</div>
 	)
 }

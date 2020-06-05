@@ -52,7 +52,8 @@ const CreateBlog = ({ history }: any) => {
 		return leave
 	}
 	const saveData = () => {
-		const data = { introduction: text, title, tag_id_json: JSON.stringify(tagList) }
+		const introduction = JSON.stringify({ data: text })
+		const data = { introduction: introduction, title, tag_id_json: JSON.stringify(tagList) }
 		postData('/ke/blog', JSON.stringify(data)).then((res) => {
 			debugger
 		})
