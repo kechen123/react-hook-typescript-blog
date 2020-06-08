@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { throttle } from '@common/util'
 import Title from '@components/title'
-const DELTA = 5
+const DELTA = 10
 
 class Nav extends Component {
 	public constructor(props: any) {
@@ -12,19 +12,17 @@ class Nav extends Component {
 		menuOpen: false,
 		scrollDirection: 'none',
 		lastScrollTop: 0,
+		chengedirection: false,
 		firstPageEnd: false,
 	}
 	//组件挂载完成时候触发的生命周期函数
 	componentDidMount() {
-		window.addEventListener('scroll', this.handleScroll, true)
 		setTimeout(
 			() =>
 				this.setState({ isMounted: true }, () => {
-					console.log('监听scroll>>>>>>>>>')
 					window.addEventListener(
 						'scroll',
 						() => {
-							console.log('scroll-------')
 							throttle(this.handleScroll())
 						},
 						true
@@ -40,35 +38,41 @@ class Nav extends Component {
 		const { isMounted, menuOpen, scrollDirection, lastScrollTop } = this.state
 		const fromTop = window.scrollY
 		// Make sure they scroll more than DELTA
-		console.log('scroll>>>>>>' + fromTop, lastScrollTop)
 		if (!isMounted || Math.abs(lastScrollTop - fromTop) <= DELTA || menuOpen) {
 			return
 		}
-
 		if (fromTop < DELTA) {
-			console.log('none>>>>>>>>>>>>')
-			this.setState({ scrollDirection: 'none' })
-		} else if (fromTop > lastScrollTop && fromTop > 90) {
-			if (scrollDirection !== 'down') {
-				console.log('down>>>>>>>>>>>>')
-				this.setState({ scrollDirection: 'down' })
-			}
-		} else if (fromTop + window.innerHeight < document.body.scrollHeight) {
-			if (scrollDirection !== 'up') {
-				console.log('up>>>>>>>>>>>>')
-				this.setState({ scrollDirection: 'up' })
-			}
+			this.setState({
+				scrollDirection: 'none',
+				chengedirection: true,
+				lastScrollTop: fromTop,
+				firstPageEnd: true,
+			})
+		} else if (fromTop > lastScrollTop && fromTop > 90 && scrollDirection !== 'down') {
+			this.setState({
+				scrollDirection: 'down',
+				chengedirection: true,
+				lastScrollTop: fromTop,
+				firstPageEnd: true,
+			})
+		} else if (fromTop < lastScrollTop && scrollDirection !== 'up') {
+			this.setState({ scrollDirection: 'up', chengedirection: true, lastScrollTop: fromTop, firstPageEnd: true })
+		} else {
+			this.setState({ chengedirection: false, lastScrollTop: fromTop, firstPageEnd: true })
 		}
-
-		this.setState({ lastScrollTop: fromTop, firstPageEnd: true })
 	}
-
+	//是否要更新数据，如果返回true才会更新数据
+	shouldComponentUpdate(nextProps: any, nextState: any) {
+		if (nextState.chengedirection) {
+			return true //返回true，确认更新
+		}
+		return false
+	}
 	//组件将要销毁的时候触发的生命周期函数，用在组件销毁的时候执行操作
 	componentWillUnmount() {
-		console.log('组件销毁了')
+		window.removeEventListener('scroll', () => this.handleScroll())
 	}
 	render() {
-		console.log('03数据渲染render')
 		return (
 			<Title
 				scrollDirection={this.state.scrollDirection}

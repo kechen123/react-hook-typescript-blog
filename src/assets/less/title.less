@@ -7,6 +7,8 @@
 	line-height: 50px;
 	top: 0;
 	background-color: #0a192f;
+	// transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+	// -webkit-transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 
 	//border-bottom: solid 1px #999;
 	.t_content {
@@ -164,13 +166,37 @@
 	}
 }
 
-.show {
-	display: block;
-}
 
 .hide {
-	display: none;
+	animation: hidetitle 1s forwards;
 }
+
+@keyframes hidetitle {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(-86px);
+	}
+}
+
+.show {
+	box-shadow: rgba(2, 12, 27, 0.7) 0px 10px 30px -10px;
+	animation: showtitle 1s forwards;
+}
+
+@keyframes showtitle {
+	from {
+		transform: translateY(-86px);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+
 
 .t_menus {
 	position: fixed;

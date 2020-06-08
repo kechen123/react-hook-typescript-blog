@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
@@ -15,6 +15,7 @@ const BlogDetail = ({ history }: any) => {
 	useEffect(() => {
 		getData('/ke/blog?id=' + id).then((res) => {
 			if (res.code == 200) {
+				res.data[0].introduction = JSON.parse(res.data[0].introduction).data
 				setBlog(res.data[0])
 			}
 		})
@@ -23,9 +24,13 @@ const BlogDetail = ({ history }: any) => {
 		<div className="detailcontent">
 			<div className="blogDetail">
 				{blog ? (
-					<div className="detail">
-						<div dangerouslySetInnerHTML={{ __html: converter.makeHtml(blog.introduction) }}></div>
-					</div>
+					<Fragment>
+						<div className="title">{blog.title}</div>
+
+						<div className="detail">
+							<div dangerouslySetInnerHTML={{ __html: converter.makeHtml(blog.introduction) }}></div>
+						</div>
+					</Fragment>
 				) : (
 					''
 				)}

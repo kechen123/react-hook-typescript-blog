@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useMappedState } from 'redux-react-hook'
+import { CSSTransition } from 'react-transition-group'
 import { BackImage } from '@redux/Stores'
+import { throttle } from '@common/util'
 import '@less/title.less'
 import { withRouter } from 'react-router-dom'
 const mapState = (state: BackImage) => ({
@@ -15,7 +17,6 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 	const { isEdit } = useMappedState(mapState)
 	const [active, setActive] = useState(history.location.pathname)
 	const [showMenu, setShowMenu] = useState(false)
-	console.log('title-----scrollDirection>>>>' + scrollDirection)
 	const toggle = () => {
 		setShowMenu(!showMenu)
 	}
@@ -88,12 +89,17 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 				</div>
 			)
 		} else {
+			console.log('渲染title>>>>>>>>>>>>>' + scrollDirection)
 			return (
-				<div className={` ${scrollDirection != 'down' ? 'show' : 'hide'} t_body`}>
+				<div
+					className={`t_body
+				 ${scrollDirection == 'down' ? 'hide' : ''}
+				 ${scrollDirection == 'up' ? 'show' : ''}
+				 `}
+				>
 					<div className="t_content">
 						<div className="t_left" onClick={btnClick('/index')}></div>
 						{isEdit ? <div className={`title`}>写文章</div> : ''}
-
 						<RightContent />
 						<div className="t_right_l" onClick={toggle}></div>
 					</div>
@@ -101,6 +107,7 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 			)
 		}
 	}
+
 	return <IsMobil />
 }
 export default withRouter(Title)
