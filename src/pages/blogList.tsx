@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch } from 'redux-react-hook'
 import { withRouter } from 'react-router-dom'
 import BlogItem from '@components/blog_item'
+import Pagination from '@components/pagination'
 import '@assets/icon/iconfont.css'
 import '@less/blogList.less'
 import { useDataApi } from '../http/request'
@@ -10,6 +11,7 @@ const BlogList = ({ history }: any) => {
 	const [pageSize] = useState(6)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageData, setPageData] = useState<any>([])
+	const [sum, setSum] = useState(0)
 	const [{ data, isLoading, isError }, setParams] = useDataApi(
 		'/ke/blog',
 		{
@@ -28,7 +30,8 @@ const BlogList = ({ history }: any) => {
 				}
 			}
 		}
-		result = pageData.concat(data.data)
+		// result = pageData.concat(data.data)
+		result = data.data
 	} else {
 		result = pageData
 	}
@@ -52,12 +55,25 @@ const BlogList = ({ history }: any) => {
 			history.push('/createBlog')
 		}
 	}
-	const getMore = () => {
-		setCurrentPage(currentPage + 1)
+	const goPage = (page: number) => {
+		console.log(page)
+		setCurrentPage(page)
 		setParams({
-			page: currentPage + 1,
+			page: page,
 			size: pageSize,
 		})
+	}
+	const firstPage = () => {
+		goPage(1)
+	}
+	const lastPage = () => {
+		goPage(data.pageNum)
+	}
+	const prevPage = () => {
+		goPage(currentPage - 1)
+	}
+	const nextPage = () => {
+		goPage(currentPage + 1)
 	}
 	useEffect(() => {
 		setPageData(result)
@@ -66,14 +82,19 @@ const BlogList = ({ history }: any) => {
 		<div className="b_html">
 			<div className="b_body">
 				<List />
-				<button
-					onClick={(e) => {
-						getMore()
-					}}
-					className="b_more"
-				>
-					show more
-				</button>
+				{data.code && data.code == 200 ? (
+					<Pagination
+						page={currentPage}
+						pageNum={data.pageNum}
+						prevFun={prevPage}
+						nextFun={nextPage}
+						firstFun={firstPage}
+						lastFun={lastPage}
+						goFun={goPage}
+					/>
+				) : (
+					''
+				)}
 			</div>
 			<i onClick={btnClick()} className="iconfont iconshuxie"></i>
 		</div>

@@ -1,0 +1,51 @@
+@paginDefault: rgb(100, 255, 218);
+@activeDefault: rgba(100, 255, 218, 0.07);
+
+.d_pagination {
+  height: 60px;
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  user-select: none;
+
+  .d_btn {
+    border: solid 1px @paginDefault;
+    padding: 8px 12px;
+    margin: 6px;
+    color: @paginDefault;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .d_content {
+    display: -webkit-flex;
+    /* Safari */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    max-width: 50%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    .d_item {
+      border: solid 1px @paginDefault;
+      padding: 8px 12px;
+      margin: 6px;
+      color: @paginDefault;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .active {
+      background-color: @activeDefault;
+    }
+  }
+}

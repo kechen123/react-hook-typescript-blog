@@ -93,8 +93,8 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 			return (
 				<div
 					className={`t_body
-				 ${scrollDirection == 'down' ? 'hide' : ''}
-				 ${scrollDirection == 'up' ? 'show' : ''}
+				 ${scrollDirection == 'down' ? 'title_hide' : ''}
+				 ${scrollDirection == 'up' ? 'title_show' : ''}
 				 `}
 				>
 					<div className="t_content">

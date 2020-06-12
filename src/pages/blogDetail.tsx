@@ -15,7 +15,6 @@ const BlogDetail = ({ history }: any) => {
 	useEffect(() => {
 		getData('/ke/blog?id=' + id).then((res) => {
 			if (res.code == 200) {
-				res.data[0].introduction = JSON.parse(res.data[0].introduction).data
 				setBlog(res.data[0])
 			}
 		})

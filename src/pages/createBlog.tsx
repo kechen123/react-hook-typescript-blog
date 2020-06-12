@@ -39,6 +39,7 @@ const CreateBlog = ({ history }: any) => {
 	const dispatch = useDispatch()
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const [text, setText] = useState(txt)
+	const [html, setHtml] = useState(null)
 	const [title, setTitle] = useState('')
 	const [tagList, setTagList] = useState<any>({})
 	const leaveMessage = () => {
@@ -52,8 +53,7 @@ const CreateBlog = ({ history }: any) => {
 		return leave
 	}
 	const saveData = () => {
-		const introduction = JSON.stringify({ data: text })
-		const data = { introduction: introduction, title, tag_id_json: JSON.stringify(tagList) }
+		const data = { introductionHtml: html, introductionText: text, title, tag_id_json: JSON.stringify(tagList) }
 		postData('/ke/blog', JSON.stringify(data)).then((res) => {
 			debugger
 		})
@@ -94,7 +94,7 @@ const CreateBlog = ({ history }: any) => {
 					<Tag tagList={tagList} setTagList={setTagList}></Tag>
 				</div>
 				<div className="createContent">
-					<EditMarkDown text={text} setText={setText}></EditMarkDown>
+					<EditMarkDown text={text} setHtml={setHtml} setText={setText}></EditMarkDown>
 				</div>
 				<Prompt message={leaveMessage}></Prompt>
 			</div>
