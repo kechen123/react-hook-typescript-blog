@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
-import showdownHighlight from 'showdown-highlight'
 import { withRouter } from 'react-router-dom'
 import '@less/blog_item.less'
 interface Blog {
@@ -13,11 +11,7 @@ interface Blog {
 const BlogItem = ({ history, Blog }: any) => {
 	const [showDetail, setShowDetail] = useState(false)
 	const obj = Blog
-	console.log(obj)
-	const introduction = JSON.parse(obj.introduction)
-	let converter = new showdown.Converter({
-		extensions: [showdownHighlight],
-	})
+	const introduction = obj.introduction
 	const goDetail = (obj: any) => {
 		history.push('/blogDetail/' + obj.id)
 	}
@@ -39,10 +33,7 @@ const BlogItem = ({ history, Blog }: any) => {
 					<h2 className="card__title">
 						<a href="#">{obj.title}</a>
 					</h2>
-					<p
-						className="card__description"
-						dangerouslySetInnerHTML={{ __html: converter.makeHtml(obj.introduction) }}
-					></p>
+					<p className="card__description" dangerouslySetInnerHTML={{ __html: introduction }}></p>
 				</div>
 
 				<footer className="card__footer">
@@ -77,7 +68,7 @@ const BlogItem = ({ history, Blog }: any) => {
 
 						<div className="body">
 							<h4 className="title">{obj.title}</h4>
-							<p className="describe">{introduction.data}</p>
+							<p className="describe">{introduction}</p>
 						</div>
 					</header>
 
@@ -85,9 +76,6 @@ const BlogItem = ({ history, Blog }: any) => {
 						<ul>
 							<li>
 								<span className="icon ion-clock"></span> {obj.create_time}
-							</li>
-							<li>
-								<span className="icon ion-chatbox"></span>
 							</li>
 							<li>
 								<span className="icon "> {obj.comment_count} 评论</span>

@@ -20,6 +20,7 @@ const EditMarkDown = (props: any) => {
 	let converter = new showdown.Converter({
 		extensions: [showdownHighlight],
 	})
+
 	let html = converter.makeHtml(props.text)
 	return (
 		<div className="editBody">
@@ -35,7 +36,10 @@ const EditMarkDown = (props: any) => {
 			</div>
 
 			<div className="show">
-				<div className="showContent" dangerouslySetInnerHTML={{ __html: html }}></div>
+				<div
+					className="showContent markdown"
+					dangerouslySetInnerHTML={{ __html: converter.makeHtml(props.text) }}
+				></div>
 			</div>
 		</div>
 	)

@@ -27,7 +27,7 @@ section {
       color: rgb(204, 214, 246);
       font-size: 80px;
       line-height: 1.1;
-      margin: 0px;
+      margin: 0px 0px 20px;
       opacity: 0;
       animation: info 1s forwards;
       animation-delay: 700ms;
@@ -38,7 +38,7 @@ section {
       line-height: 1.1;
       font-weight: 600;
       color: rgb(136, 146, 176);
-      margin: 0px 0px 10px;
+      margin: 0px 0px 20px;
       opacity: 0;
       animation: info 1s forwards;
       animation-delay: 900ms;
@@ -50,6 +50,18 @@ section {
       opacity: 0;
       animation: info 1s forwards;
       animation-delay: 1100ms;
+      position: relative;
+      line-height: 24px;
+
+      div {
+        position: absolute;
+        right: -145px;
+        bottom: 0px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 50px;
+        color: #ffcc66;
+      }
     }
 
     @keyframes info {

@@ -12,6 +12,7 @@
 			"@http/*": ["./src/http/*"],
 			"@pages/*": ["./src/pages/*"],
 			"@redux/*": ["./src/redux/*"],
+			"@mock/*": ["./src/mock/*"],
 			"@routes/*": ["./src/Routes/*"]
 		}
 	}

@@ -20,6 +20,7 @@ module.exports = override(
 		"@containers": path.resolve(__dirname, "./src/containers"),
 		"@http": path.resolve(__dirname, "./src/http"),
 		"@redux": path.resolve(__dirname, "./src/redux"),
+		"@mock": path.resolve(__dirname, "./src/mock"),
 		"@routes": path.resolve(__dirname, "./src/Routes")
 	}),
 );

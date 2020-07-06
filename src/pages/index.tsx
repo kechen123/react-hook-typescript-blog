@@ -7,10 +7,11 @@ const Index = () => {
 			<div className="info">
 				<h1>Hey 我是</h1>
 				<h2>柯晨</h2>
-				<h3> I build beautiful things for the web.</h3>
+				<h3> 练习时间长达五年的切图仔.</h3>
 				<div className="detail">
-					I'm a software engineer based in Boston, MA specializing in building (and occasionally designing)
-					exceptional websites, applications, and everything in between.
+					我是一名前端开发工程师，目前在古都西安。在15-20年中做过网站,APP,小程序,微信公众号。主要技能有
+					vue，jQuery，react。但是这些都不重要，重点我其实是一个
+					<div>大帅比</div>
 				</div>
 			</div>
 		</section>
