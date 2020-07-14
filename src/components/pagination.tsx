@@ -1,5 +1,5 @@
 import React from 'react'
-import '@less/pagination.less'
+import styles from '@less/pagination.module.less'
 
 interface Pagination {
 	type?: string // 分页类型
@@ -86,20 +86,20 @@ const Pagination = (props: Pagination) => {
 
 	const Detail = () => {
 		return (
-			<div className="d_pagination">
+			<div className={styles.dPagination}>
 				<div
-					className="d_btn d_first"
+					className={`${styles.dBtn} ${styles.dFirst}`}
 					onClick={(e) => {
 						if (props.firstFun) props.firstFun()
 					}}
 				>
 					首页
 				</div>
-				<div className="d_btn d_content">
+				<div className={`${styles.dBtn} ${styles.dContent}`}>
 					<GetPageList />
 				</div>
 				<div
-					className="d_btn d_last"
+					className={`${styles.dBtn} ${styles.dLast}`}
 					onClick={(e) => {
 						if (props.lastFun) props.lastFun()
 					}}

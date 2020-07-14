@@ -14,7 +14,7 @@ Object 类型的比较是非常重要的基础知识，通过 How to Compare Obj
 - ==
 - Object.is()
 
-\`\`\`
+\`\`\`javascript
 const hero1 = {
   name: "Batman",
 };
@@ -61,7 +61,7 @@ isHeroEqual(hero1, hero3); // => false
 ##浅对比
 浅对比函数写法有很多，不过其效果都是标准的，下面给出了一种写法：
 
-\`\`\`
+\`\`\`javascript
 function shallowEqual(object1, object2) {
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
@@ -82,7 +82,7 @@ function shallowEqual(object1, object2) {
 可以看到，浅对比就是将对象每个属性进行引用对比，算是一种性能上的平衡，尤其在 redux 下有特殊的意义。
 
 下面给出了使用例子：
-\`\`\`
+\`\`\`javascript
 const hero1 = {
   name: "Batman",
   realName: "Bruce Wayne",
@@ -106,7 +106,7 @@ shallowEqual(hero1, hero3); // => false
 
 下面是一种实现方式：
 
-\`\`\`
+\`\`\`javascript
 function deepEqual(object1, object2) {
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);

@@ -3,7 +3,7 @@ import showdown from 'showdown'
 import 'highlight.js/styles/vs2015.css'
 import showdownHighlight from 'showdown-highlight'
 
-import '@less/edit_markdown.less'
+import styles from '@less/edit_markdown.module.less'
 const options = {
 	omitExtraWLInCodeBlocks: true,
 	noHeaderId: true,
@@ -23,10 +23,10 @@ const EditMarkDown = (props: any) => {
 
 	let html = converter.makeHtml(props.text)
 	return (
-		<div className="editBody">
-			<div className="edit">
+		<div className={styles.editBody}>
+			<div className={styles.edit}>
 				<textarea
-					className="editContent"
+					className={styles.editContent}
 					defaultValue={props.text}
 					name="message"
 					onBlur={(ev) => {
@@ -35,9 +35,9 @@ const EditMarkDown = (props: any) => {
 				></textarea>
 			</div>
 
-			<div className="show">
+			<div className={styles.show}>
 				<div
-					className="showContent markdown"
+					className={`${styles.showContent} ${styles.markdown}`}
 					dangerouslySetInnerHTML={{ __html: converter.makeHtml(props.text) }}
 				></div>
 			</div>

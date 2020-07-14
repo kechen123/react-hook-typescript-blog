@@ -5,7 +5,7 @@ import { getData } from '@http/request'
 import { imageUrl } from '../config.json'
 import storage from '@common/cookie'
 import util from '@common/util'
-import '@less/bg.less'
+import styles from '@less/bg.module.less'
 const mapState = (state: BackImage) => ({
 	image: state.image,
 })
@@ -36,9 +36,9 @@ const BgUrl = () => {
 	const [imagesize] = useState('cover')
 	const [imageposition] = useState('center center')
 	return (
-		<div className="maincontent">
+		<div className={styles.maincontent}>
 			<div
-				className="fixedbg"
+				className={styles.fixedbg}
 				style={{
 					backgroundImage: 'url(' + imageUrl + image + ')',
 					backgroundSize: imagesize,
@@ -46,7 +46,7 @@ const BgUrl = () => {
 				}}
 			>
 				<div
-					className="mask-fixedbg"
+					className={styles.maskFixedbg}
 					style={{
 						background:
 							'-webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 10%, rgb(34, 45, 57) 90%) ',

@@ -4,7 +4,7 @@ import { useDispatch } from 'redux-react-hook'
 import EditMarkDown from '@components/edit_markdown'
 import { postData, getData } from '@http/request'
 import Tag from '@components/tag'
-import '@less/createBlog.less'
+import styles from '@less/createBlog.module.less'
 import txt from '@mock/blogdetail'
 const CreateBlog = ({ history }: any) => {
 	const dispatch = useDispatch()
@@ -38,21 +38,21 @@ const CreateBlog = ({ history }: any) => {
 		}
 	}
 	return (
-		<div className="createHtml">
-			<div className="createTitle">
-				<div className="t_left" onClick={btnClick('/index')}></div>
+		<div className={styles.createHtml}>
+			<div className={styles.createTitle}>
+				<div className={styles.tLeft} onClick={btnClick('/index')}></div>
 				<div className={`title`}>写文章</div>
 				<div
-					className="save_btn"
+					className={styles.saveBtn}
 					onClick={(e) => {
 						saveData()
 					}}
 				>
-					<div className="btn">发布</div>
+					<div className={styles.btn}>发布</div>
 				</div>
 			</div>
-			<div className="createBody">
-				<div className="c_title">
+			<div className={styles.createBody}>
+				<div className={styles.cTitle}>
 					<input
 						placeholder="请输入标题"
 						ref={inputRef}
@@ -61,10 +61,10 @@ const CreateBlog = ({ history }: any) => {
 						}}
 					></input>
 				</div>
-				<div className="c_type">
+				<div className={styles.cType}>
 					<Tag tagList={tagList} setTagList={setTagList}></Tag>
 				</div>
-				<div className="createContent">
+				<div className={styles.createContent}>
 					<EditMarkDown text={text} setHtml={setHtml} setText={setText}></EditMarkDown>
 				</div>
 				<Prompt message={leaveMessage}></Prompt>

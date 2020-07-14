@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'highlight.js/styles/vs2015.css'
 import { withRouter } from 'react-router-dom'
-import '@less/blog_item.less'
+import styles from '@less/blog_item.module.less'
 interface Blog {
 	title: string
 	introduction: string
@@ -18,25 +18,25 @@ const BlogItem = ({ history, Blog }: any) => {
 	const Item11 = () => {
 		return (
 			<div
-				className="card"
+				className={styles.card}
 				onClick={(e) => {
 					goDetail(obj)
 				}}
 			>
-				<header className="card__thumb">
+				<header className={styles.cardThumb}>
 					<a href="#">
 						<img src={require('../assets/image/card.jpg')} />
 					</a>
 					<img alt="博客图片" src={require('../assets/image/card.jpg')} />
 				</header>
-				<div className="card__body">
-					<h2 className="card__title">
+				<div className={styles.cardBody}>
+					<h2 className={styles.cardTitle}>
 						<a href="#">{obj.title}</a>
 					</h2>
-					<p className="card__description" dangerouslySetInnerHTML={{ __html: introduction }}></p>
+					<p className={styles.cardDescription} dangerouslySetInnerHTML={{ __html: introduction }}></p>
 				</div>
 
-				<footer className="card__footer">
+				<footer className={styles.cardFooter}>
 					<span className="icon ion-clock"></span> {obj.create_time}
 					<span className="icon ion-clock">{obj.create_time}</span>
 					<span className="icon ion-chatbox"></span>
@@ -49,30 +49,30 @@ const BlogItem = ({ history, Blog }: any) => {
 	const Item = () => {
 		return (
 			<div
-				className="card"
+				className={styles.card}
 				onClick={(e) => {
 					goDetail(obj)
 				}}
 			>
-				<div className="content">
-					<header className="card__thumb">
-						<div className="header">
-							<div className="type">
+				<div className={styles.content}>
+					<header className={styles.cardThumb}>
+						<div className={styles.header}>
+							<div className={styles.type}>
 								<span className="iconfont iconReact"></span>
 							</div>
 
-							<div className="link">
+							<div className={styles.link}>
 								<span className="iconfont iconnodejs"></span>
 							</div>
 						</div>
 
-						<div className="body">
-							<h4 className="title">{obj.title}</h4>
-							<p className="describe">{introduction}</p>
+						<div className={styles.body}>
+							<h4 className={styles.title}>{obj.title}</h4>
+							<p className={styles.describe}>{introduction}</p>
 						</div>
 					</header>
 
-					<footer className="card__footer">
+					<footer className={styles.cardFooter}>
 						<ul>
 							<li>
 								<span className="icon ion-clock"></span> {obj.create_time}

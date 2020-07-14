@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import '@less/tag.less'
+import styles from '@less/tag.module.less'
 import tagsJson from '../assets/tags/tags.json'
 
 const Tag = (props: any) => {
@@ -33,7 +33,7 @@ const Tag = (props: any) => {
 		const li = Object.keys(tags.tag).map((value: any, index: number) => {
 			return (
 				<li
-					className={active === index ? 'active' : ''}
+					className={active === index ? styles.active : ''}
 					key={index}
 					data-index={index}
 					onClick={(e) => {
@@ -44,13 +44,13 @@ const Tag = (props: any) => {
 				</li>
 			)
 		})
-		return <ul className="nav">{li}</ul>
+		return <ul className={styles.nav}>{li}</ul>
 	}
 	const TagContent = () => {
 		let list = Object.values(tags.tag)[active].map((value: any) => {
 			return (
 				<div
-					className="item"
+					className={styles.item}
 					key={value.id}
 					onClick={(e) => {
 						selectTag(value)
@@ -61,7 +61,7 @@ const Tag = (props: any) => {
 				</div>
 			)
 		})
-		return <div className="tab-content ">{list}</div>
+		return <div className={styles.tabContent}>{list}</div>
 	}
 
 	const Select = () => {
@@ -70,7 +70,7 @@ const Tag = (props: any) => {
 		}
 		let tag = Object.values(props.tagList).map((value: any, index: number) => {
 			return (
-				<div className="item" key={index}>
+				<div className={styles.item} key={index}>
 					{value.name}
 					<i
 						onClick={(e) => {
@@ -81,7 +81,7 @@ const Tag = (props: any) => {
 				</div>
 			)
 		})
-		return <div className="selectTag">{tag}</div>
+		return <div className={styles.selectTag}>{tag}</div>
 	}
 	useEffect(() => {
 		if (num === 0) {
@@ -100,15 +100,15 @@ const Tag = (props: any) => {
 		}
 	}, [])
 	return (
-		<div className="body">
+		<div className={styles.body}>
 			<div
-				className={`tag ${num === 0 ? 'hide' : ''}`}
+				className={`tag ${num === 0 ? styles.hide : ''}`}
 				onClick={(e) => {
 					click(e)
 				}}
 			>
 				<button
-					className="btn btn-light btn-sm"
+					className={`${styles.btn} ${styles.btnLight} ${styles.btnSm}`}
 					onClick={(e) => {
 						setShow(!show)
 					}}
@@ -118,9 +118,9 @@ const Tag = (props: any) => {
 				>
 					+ 添加标签
 				</button>
-				<div className={`dropdown-menu ${show === true ? 'show' : ''}`}>
-					<div className="dropdown-header" id="tagDlgHeader">
-						还可添加 <span className="tags-left">{num}</span> 个标签
+				<div className={`${styles.dropdownMenu} ${show === true ? styles.show : ''}`}>
+					<div className={styles.dropdownHeader} id="tagDlgHeader">
+						还可添加 <span className={styles.tagsLeft}>{num}</span> 个标签
 					</div>
 					<Taglist></Taglist>
 					<TagContent></TagContent>

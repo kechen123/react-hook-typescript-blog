@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import BlogItem from '@components/blog_item'
 import Pagination from '@components/pagination'
 import '@assets/icon/iconfont.css'
-import '@less/blogList.less'
+import styles from '@less/blogList.module.less'
 import { useDataApi } from '../http/request'
 
 const BlogList = ({ history }: any) => {
@@ -41,9 +41,9 @@ const BlogList = ({ history }: any) => {
 			const blogList = result.map((item: any, index: any) => {
 				return <BlogItem Blog={item} key={index}></BlogItem>
 			})
-			return <div className="b_content">{blogList}</div>
+			return <div className={styles.bContent}>{blogList}</div>
 		} else {
-			return <div className="b_content"></div>
+			return <div className={styles.bContent}></div>
 		}
 	}
 	const btnClick = () => {
@@ -79,27 +79,29 @@ const BlogList = ({ history }: any) => {
 		setPageData(result)
 	}, [currentPage])
 	return (
-		<div className="b_html">
-			<div className="b_body">
-				<List />
-				{data.code && data.code == 200 ? (
-					<div style={{ marginTop: '30px', width: '100%' }}>
-						<Pagination
-							page={currentPage}
-							pageNum={data.pageNum}
-							prevFun={prevPage}
-							nextFun={nextPage}
-							firstFun={firstPage}
-							lastFun={lastPage}
-							goFun={goPage}
-						/>
-					</div>
-				) : (
-					''
-				)}
+		<section>
+			<div className={styles.bHtml}>
+				<div className={styles.bBody}>
+					<List />
+					{data.code && data.code == 200 ? (
+						<div style={{ marginTop: '30px', width: '100%' }}>
+							<Pagination
+								page={currentPage}
+								pageNum={data.pageNum}
+								prevFun={prevPage}
+								nextFun={nextPage}
+								firstFun={firstPage}
+								lastFun={lastPage}
+								goFun={goPage}
+							/>
+						</div>
+					) : (
+						''
+					)}
+				</div>
+				<i onClick={btnClick()} className="iconfont iconshuxie"></i>
 			</div>
-			<i onClick={btnClick()} className="iconfont iconshuxie"></i>
-		</div>
+		</section>
 	)
 }
 export default withRouter(BlogList)

@@ -6,8 +6,9 @@ import blogList from '@pages/blogList'
 import createBlog from '@pages/createBlog'
 import blogDetail from '@pages/blogDetail'
 import Lifecycle from '@pages/lifecycleParent'
+import csstools from '@pages/csstools/index'
 
-import '@less/layout.less'
+import styles from '@less/layout.module.less'
 import { Route } from 'react-router-dom'
 import AnimatedSwitch from './AnimatedSwitch'
 import { StoreContext } from 'redux-react-hook'
@@ -26,6 +27,7 @@ const Layout = () => {
 				<Route path="/blogDetail/:id" component={blogDetail} />
 				<Route path="/createBlog" component={createBlog} />
 				<Route path="/lifecycle" component={Lifecycle} />
+				<Route path="/csstools" component={csstools} />
 			</AnimatedSwitch>
 		</StoreContext.Provider>
 	)

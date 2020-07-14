@@ -3,7 +3,7 @@ import { useMappedState } from 'redux-react-hook'
 import { CSSTransition } from 'react-transition-group'
 import { BackImage } from '@redux/Stores'
 import { throttle } from '@common/util'
-import '@less/title.less'
+import styles from '@less/title.module.less'
 import { withRouter } from 'react-router-dom'
 const mapState = (state: BackImage) => ({
 	isEdit: state.isEdit,
@@ -35,26 +35,30 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 	const RightContent = () => {
 		if (isEdit) {
 			return (
-				<div className="save_btn">
-					<div className="btn">发布</div>
+				<div className={styles.saveBtn}>
+					<div className={styles.btn}>发布</div>
 				</div>
 			)
 		} else {
 			return (
-				<div className="tabs">
+				<div className={styles.tabs}>
 					<li
-						className={`${!firstPageEnd ? 'tab1' : ''} ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
+						className={`${!firstPageEnd ? styles.tab1 : ''} ${
+							active.indexOf('/blogList') > -1 ? styles.active : ''
+						}`}
 						onClick={btnClick('/blogList')}
 					>
 						blog
 					</li>
 					<li
-						className={`${!firstPageEnd ? 'tab2' : ''} ${active.indexOf('/index') > -1 ? 'active' : ''}`}
-						onClick={btnClick('/lifecycle')}
+						className={`${!firstPageEnd ? styles.tab2 : ''} ${
+							active.indexOf('/index') > -1 ? styles.active : ''
+						}`}
+						onClick={btnClick('/csstools')}
 					>
-						message
+						csstools
 					</li>
-					<li className={`${!firstPageEnd ? 'tab3' : ''}`}>
+					<li className={`${!firstPageEnd ? styles.tab3 : ''}`}>
 						<a href="https://github.com/kechen123" target="view_window">
 							GitHub
 						</a>
@@ -70,18 +74,18 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 		}
 		if (showMenu) {
 			return (
-				<div className="t_menus" onClick={toggle}>
-					<div className="menu_item" onClick={btnClick('/index')}>
+				<div className={styles.tMenus} onClick={toggle}>
+					<div className={styles.menuItem} onClick={btnClick('/index')}>
 						index
 					</div>
 					<div
-						className={`menu_item ${active.indexOf('/blogList') > -1 ? 'active' : ''}`}
+						className={`${styles.menuItem} ${active.indexOf('/blogList') > -1 ? styles.active : ''}`}
 						onClick={btnClick('/blogList')}
 					>
 						blog
 					</div>
 					<div
-						className={`menu_item ${active.indexOf('/index') > -1 ? 'active' : ''}`}
+						className={`${styles.menuItem} ${active.indexOf('/index') > -1 ? styles.active : ''}`}
 						onClick={btnClick('/index')}
 					>
 						about
@@ -89,19 +93,19 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 				</div>
 			)
 		} else {
-			console.log('渲染title>>>>>>>>>>>>>' + scrollDirection)
 			return (
 				<div
-					className={`t_body
-				 ${scrollDirection == 'down' ? 'title_hide' : ''}
-				 ${scrollDirection == 'up' ? 'title_show' : ''}
+					className={`
+					${styles.tBody}
+				 ${scrollDirection == 'down' ? styles.titleHide : ''}
+				 ${scrollDirection == 'up' ? styles.titleShow : ''}
 				 `}
 				>
-					<div className="t_content">
-						<div className="t_left" onClick={btnClick('/index')}></div>
-						{isEdit ? <div className={`title`}>写文章</div> : ''}
+					<div className={styles.tContent}>
+						<div className={styles.tLeft} onClick={btnClick('/index')}></div>
+						{isEdit ? <div className={`${styles.title}`}>写文章</div> : ''}
 						<RightContent />
-						<div className="t_right_l" onClick={toggle}></div>
+						<div className={styles.tRightL} onClick={toggle}></div>
 					</div>
 				</div>
 			)
