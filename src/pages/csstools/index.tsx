@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import styles from '@less/csstools/index.module.less'
 const CssTools = ({ history }: any) => {
-	const [text, setText] = useState('')
 	return (
 		<section>
 			<div className={styles.body}>

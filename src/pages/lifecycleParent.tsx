@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import Lifecycle from './lifecycle'
 
 class App extends Component {
-	constructor(props: any) {
-		super(props)
-	}
 	state = {
 		flag: true,
 		title: '我是app组件的标题',

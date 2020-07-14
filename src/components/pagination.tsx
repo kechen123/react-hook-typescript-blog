@@ -14,7 +14,7 @@ interface Pagination {
 
 const Pagination = (props: Pagination) => {
 	const GetPageList = () => {
-		let cont = new Array()
+		let cont = []
 		const page = props.page,
 			pageNum = props.pageNum,
 			showMax = 7
@@ -30,7 +30,7 @@ const Pagination = (props: Pagination) => {
 			let index = 1
 			for (let i = 1; i < max; i++) {
 				if (index > pageNum) break
-				if (i == 1 && page > Math.ceil(showMax / 2)) {
+				if (i === 1 && page > Math.ceil(showMax / 2)) {
 					cont.push({
 						name: props.goFun,
 						text: i,
@@ -51,7 +51,7 @@ const Pagination = (props: Pagination) => {
 					})
 					index++
 				}
-				if (i == max - 1 && index <= pageNum) {
+				if (i === max - 1 && index <= pageNum) {
 					if (page + Math.ceil(showMax / 2) <= pageNum) {
 						cont.push({
 							name: props.nextFun,
@@ -71,7 +71,7 @@ const Pagination = (props: Pagination) => {
 					return (
 						<div
 							key={i}
-							className={`d_item ${page == item.text ? 'active' : ''}`}
+							className={`d_item ${page === item.text ? 'active' : ''}`}
 							onClick={(e) => {
 								if (item.name) item.name(item.text)
 							}}

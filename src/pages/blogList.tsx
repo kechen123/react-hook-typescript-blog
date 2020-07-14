@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'redux-react-hook'
 import { withRouter } from 'react-router-dom'
 import BlogItem from '@components/blog_item'
@@ -11,8 +11,7 @@ const BlogList = ({ history }: any) => {
 	const [pageSize] = useState(6)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageData, setPageData] = useState<any>([])
-	const [sum, setSum] = useState(0)
-	const [{ data, isLoading, isError }, setParams] = useDataApi(
+	const [{ data }, setParams] = useDataApi(
 		'/ke/blog',
 		{
 			page: currentPage,
@@ -83,7 +82,7 @@ const BlogList = ({ history }: any) => {
 			<div className={styles.bHtml}>
 				<div className={styles.bBody}>
 					<List />
-					{data.code && data.code == 200 ? (
+					{data.code && data.code === 200 ? (
 						<div style={{ marginTop: '30px', width: '100%' }}>
 							<Pagination
 								page={currentPage}

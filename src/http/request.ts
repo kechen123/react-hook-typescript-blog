@@ -50,7 +50,7 @@ const dataFetchReducer = (state: any, action: any) => {
 }
 
 export const useDataApi = (initialUrl: string, initialParams: any, initialData: any) => {
-	const [url, setUrl] = useState(initialUrl)
+	const [url] = useState(initialUrl)
 	const [params, setParams] = useState(initialParams)
 	const [state, dispatch] = useReducer(dataFetchReducer, {
 		isLoading: false,

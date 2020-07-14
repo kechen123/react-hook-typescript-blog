@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useMappedState } from 'redux-react-hook'
-import { CSSTransition } from 'react-transition-group'
 import { BackImage } from '@redux/Stores'
-import { throttle } from '@common/util'
 import styles from '@less/title.module.less'
 import { withRouter } from 'react-router-dom'
 const mapState = (state: BackImage) => ({
@@ -97,8 +95,8 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 				<div
 					className={`
 					${styles.tBody}
-				 ${scrollDirection == 'down' ? styles.titleHide : ''}
-				 ${scrollDirection == 'up' ? styles.titleShow : ''}
+				 ${scrollDirection === 'down' ? styles.titleHide : ''}
+				 ${scrollDirection === 'up' ? styles.titleShow : ''}
 				 `}
 				>
 					<div className={styles.tContent}>

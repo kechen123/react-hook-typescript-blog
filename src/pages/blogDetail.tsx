@@ -16,11 +16,11 @@ const BlogDetail = ({ history }: any) => {
 	})
 	useEffect(() => {
 		getData('/ke/detail_blog/' + id).then((res) => {
-			if (res.code == 200) {
+			if (res.code === 200) {
 				setBlog(res.data)
 			}
 		})
-	}, [])
+	}, [id])
 	return (
 		<div className={styles.detailcontent}>
 			<div className={styles.blogDetail}>
