@@ -71,7 +71,7 @@ const Pagination = (props: Pagination) => {
 					return (
 						<div
 							key={i}
-							className={`d_item ${page === item.text ? 'active' : ''}`}
+							className={`${styles.dItem} ${page === item.text ? styles.active : ''}`}
 							onClick={(e) => {
 								if (item.name) item.name(item.text)
 							}}

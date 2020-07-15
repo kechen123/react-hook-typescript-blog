@@ -22,14 +22,6 @@ const BlogList = ({ history }: any) => {
 	let result: Array<any> = []
 	const dispatch = useDispatch()
 	if (data.code === 200 && data.data.length > 0) {
-		// if (data.code === 200) {
-		// 	for (let i = 0; i < data.data.length; i++) {
-		// 		if (data.data[i].introduction && data.data[i].introduction.length > 150) {
-		// 			data.data[i].introduction = data.data[i].introduction.substring(0, 150) + '...'
-		// 		}
-		// 	}
-		// }
-		// result = pageData.concat(data.data)
 		result = data.data
 	} else {
 		result = pageData
