@@ -5,6 +5,7 @@ import styles from '@less/AnimatedSwitch.module.less'
 
 const AnimatedSwitch = (props: any) => {
 	const { children } = props
+	console.log(children)
 	console.log('AnimatedSwitch>>>>>...')
 	return (
 		<Route

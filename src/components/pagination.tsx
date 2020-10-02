@@ -39,10 +39,10 @@ const Pagination = (props: Pagination) => {
 						name: props.prevFun,
 						text: '...',
 					})
-					if (page + Math.ceil(showMax / 2) >= pageNum) {
-						index = pageNum - Math.ceil(showMax / 2) - 1
+					if (page + (showMax - 3) / 2 >= pageNum) {
+						index = pageNum - Math.ceil(showMax / 2)
 					} else {
-						index = page - 2
+						index = page - (showMax - 3) / 2
 					}
 				} else if (index <= pageNum) {
 					cont.push({
@@ -52,7 +52,7 @@ const Pagination = (props: Pagination) => {
 					index++
 				}
 				if (i === max - 1 && index <= pageNum) {
-					if (page + Math.ceil(showMax / 2) <= pageNum) {
+					if (page + (showMax - 3) / 2 + 1 < pageNum) {
 						cont.push({
 							name: props.nextFun,
 							text: '...',

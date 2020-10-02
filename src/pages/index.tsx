@@ -3,7 +3,7 @@ import styles from '@less/index.module.less'
 const Index = () => {
 	console.log('index>>>>>>>>>>..')
 	return (
-		<section>
+		<section className={styles.section}>
 			<div className={styles.info}>
 				<h1>Hey 我是</h1>
 				<h2>柯晨</h2>

@@ -15,9 +15,9 @@ const BlogDetail = ({ history }: any) => {
 		extensions: [showdownHighlight],
 	})
 	useEffect(() => {
-		getData('/ke/detail_blog/' + id).then((res) => {
-			if (res.code === 200) {
-				setBlog(res.data)
+		getData('/rs/blog/' + id).then((res) => {
+			if (res.status === 200) {
+				setBlog(res.data[0])
 			}
 		})
 	}, [id])
@@ -29,8 +29,8 @@ const BlogDetail = ({ history }: any) => {
 						<div className={styles.title}>{blog.title}</div>
 						<div className={styles.info}>
 							<div className={styles.type}>
-								<i className={`iconfont ${blog.tags.icon}`}></i>
-								<span>{blog.tags.name}</span>
+								<i className={`iconfont ${blog.tag_json.icon}`}></i>
+								<span>{blog.tag_json.name}</span>
 							</div>
 							<div className={styles.commentCount}>
 								<span>{blog.comment_count}</span> 条评论

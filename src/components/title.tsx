@@ -48,13 +48,10 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 					>
 						blog
 					</li>
-					<li
-						className={`${!firstPageEnd ? styles.tab2 : ''} ${
-							active.indexOf('/index') > -1 ? styles.active : ''
-						}`}
-						onClick={btnClick('/csstools')}
-					>
-						csstools
+					<li className={`${!firstPageEnd ? styles.tab2 : ''}`}>
+						<a href="http://datav.kedachen.com/" target="view_window">
+							data-view
+						</a>
 					</li>
 					<li className={`${!firstPageEnd ? styles.tab3 : ''}`}>
 						<a href="https://github.com/kechen123" target="view_window">

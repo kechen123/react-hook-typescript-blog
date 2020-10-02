@@ -9,8 +9,9 @@ import txt from '@mock/blogdetail'
 const CreateBlog = ({ history }: any) => {
 	const dispatch = useDispatch()
 	const inputRef = useRef<HTMLInputElement | null>(null)
+	const inputRef1 = useRef<HTMLInputElement | null>(null)
 	const [text, setText] = useState(txt)
-	const [html, setHtml] = useState(null)
+	const [introduction, setIntroduction] = useState('')
 	const [title, setTitle] = useState('')
 	const [tagList, setTagList] = useState<any>({})
 	const leaveMessage = () => {
@@ -24,13 +25,19 @@ const CreateBlog = ({ history }: any) => {
 		return leave
 	}
 	const saveData = () => {
-		const data = { introductionHtml: html, introductionText: text, title, tag_id_json: JSON.stringify(tagList) }
-		postData('/ke/blog', JSON.stringify(data)).then((res) => {
-			debugger
-		})
+		const data = {
+			content: text,
+			title,
+			introduction,
+			tag_json: JSON.stringify(tagList),
+		}
+		postData('/rs/blog', data).then((res) => {})
 	}
 	const onblur = () => {
 		setTitle(inputRef.current?.value || '')
+	}
+	const onblur1 = () => {
+		setIntroduction(inputRef1.current?.value || '')
 	}
 	const btnClick = (url: string) => {
 		return () => {
@@ -61,11 +68,20 @@ const CreateBlog = ({ history }: any) => {
 						}}
 					></input>
 				</div>
+				<div className={styles.cTitle}>
+					<input
+						placeholder="请输入描述"
+						ref={inputRef1}
+						onBlur={(ev) => {
+							onblur1()
+						}}
+					></input>
+				</div>
 				<div className={styles.cType}>
 					<Tag tagList={tagList} setTagList={setTagList}></Tag>
 				</div>
 				<div className={styles.createContent}>
-					<EditMarkDown text={text} setHtml={setHtml} setText={setText}></EditMarkDown>
+					<EditMarkDown text={text} setText={setText}></EditMarkDown>
 				</div>
 				<Prompt message={leaveMessage}></Prompt>
 			</div>

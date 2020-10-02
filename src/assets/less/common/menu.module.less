@@ -1,0 +1,56 @@
+.menuBody {
+  background-color: #132d54;
+  padding: 10px 20px;
+  min-height: 100%;
+  width: 300px;
+  margin-right: 100px;
+  float: right;
+
+  .menuItem {
+    .menuContent {
+      height: 50px;
+      line-height: 50px;
+      color: #FFF;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    .menuActive {
+      background-color: #285598;
+    }
+
+    .menuContent:hover {
+      background-color: #285598;
+    }
+
+    .menuChildren {
+      padding-left: 20px;
+
+      .menuChild {
+
+        cursor: pointer;
+
+        a {
+          height: 40px;
+          line-height: 40px;
+          display: block;
+          width: 100%;
+        }
+
+        a:hover {
+          background-color: #285598;
+        }
+      }
+
+
+    }
+
+    .menuHide {
+      display: none;
+    }
+
+    .menuShow {
+      display: block;
+    }
+  }
+}

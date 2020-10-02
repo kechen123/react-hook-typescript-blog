@@ -102,7 +102,7 @@ const Tag = (props: any) => {
 	return (
 		<div className={styles.body}>
 			<div
-				className={`tag ${num === 0 ? styles.hide : ''}`}
+				className={`${styles.tag} ${num === 0 ? styles.hide : ''}`}
 				onClick={(e) => {
 					click(e)
 				}}

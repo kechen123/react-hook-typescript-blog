@@ -3,7 +3,7 @@ import React from 'react'
 import Routes from './Routes'
 import { Router, Switch } from 'react-router-dom'
 import history from './Routes/history'
-import './mock/blog'
+import './mock'
 class App extends React.Component {
 	render() {
 		return (

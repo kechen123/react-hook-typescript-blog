@@ -1,4 +1,4 @@
 {
-  "requestUrl": "",
+  "requestUrl": "http://localhost:5000",
   "imageUrl": "http://localhost:8080/img/"
 }

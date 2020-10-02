@@ -6,7 +6,6 @@ import axios from 'axios'
 import config from '../config.json'
 import Cookies from 'js-cookie'
 
-// 使用vuex做全局loading时使用
 // import store from '@/store'
 
 export default function $axios(options: any) {

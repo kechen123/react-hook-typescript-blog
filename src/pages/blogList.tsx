@@ -5,14 +5,14 @@ import BlogItem from '@components/blog_item'
 import Pagination from '@components/pagination'
 import '@assets/icon/iconfont.css'
 import styles from '@less/blogList.module.less'
-import { useDataApi } from '../http/request'
+import { useDataApi } from '@http/request'
 
 const BlogList = ({ history }: any) => {
 	const [pageSize] = useState(6)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pageData, setPageData] = useState<any>([])
 	const [{ data }, setParams] = useDataApi(
-		'/ke/blog',
+		'/rs/blog',
 		{
 			page: currentPage,
 			size: pageSize,
@@ -21,7 +21,7 @@ const BlogList = ({ history }: any) => {
 	)
 	let result: Array<any> = []
 	const dispatch = useDispatch()
-	if (data.code === 200 && data.data.length > 0) {
+	if (data.status === 200 && data.data.length > 0) {
 		result = data.data
 	} else {
 		result = pageData
@@ -74,11 +74,11 @@ const BlogList = ({ history }: any) => {
 			<div className={styles.bHtml}>
 				<div className={styles.bBody}>
 					<List />
-					{data.code && data.code === 200 ? (
+					{data.status && data.status === 200 ? (
 						<div style={{ marginTop: '30px', width: '100%' }}>
 							<Pagination
 								page={currentPage}
-								pageNum={data.pageNum}
+								pageNum={data.pages}
 								prevFun={prevPage}
 								nextFun={nextPage}
 								firstFun={firstPage}
@@ -90,7 +90,7 @@ const BlogList = ({ history }: any) => {
 						''
 					)}
 				</div>
-				<i onClick={btnClick()} className="iconfont iconshuxie"></i>
+				<i onClick={btnClick()} className={`iconfont iconshuxie ${styles.iconshuxie}`}></i>
 			</div>
 		</section>
 	)

@@ -5,7 +5,7 @@ import blogList from '@pages/blogList'
 import createBlog from '@pages/createBlog'
 import blogDetail from '@pages/blogDetail'
 import Lifecycle from '@pages/lifecycleParent'
-import csstools from '@pages/csstools/index'
+import common from '@pages/common/index'
 
 import { Route } from 'react-router-dom'
 import AnimatedSwitch from './AnimatedSwitch'
@@ -24,8 +24,7 @@ const Layout = () => {
 				<Route path="/blogList" component={blogList} />
 				<Route path="/blogDetail/:id" component={blogDetail} />
 				<Route path="/createBlog" component={createBlog} />
-				<Route path="/lifecycle" component={Lifecycle} />
-				<Route path="/csstools" component={csstools} />
+				<Route path="/common" component={common} />
 			</AnimatedSwitch>
 		</StoreContext.Provider>
 	)
