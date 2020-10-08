@@ -11,18 +11,22 @@ const CreateBlog = ({ history }: any) => {
 	const inputRef = useRef<HTMLInputElement | null>(null)
 	const inputRef1 = useRef<HTMLInputElement | null>(null)
 	const [text, setText] = useState(txt)
+	const [post, setPost] = useState(false)
 	const [introduction, setIntroduction] = useState('')
 	const [title, setTitle] = useState('')
 	const [tagList, setTagList] = useState<any>({})
 	const leaveMessage = () => {
-		let leave = window.confirm('离开页面数据将不会保存，确定离开吗?')
-		if (leave) {
+		let leave = false
+		if (!post) {
+			leave = window.confirm('离开页面数据将不会保存，确定离开吗?')
+		}
+		if (leave || post) {
 			dispatch({
 				type: 'change_title',
 				boo: false,
 			})
 		}
-		return leave
+		return leave || post
 	}
 	const saveData = () => {
 		const data = {
@@ -31,7 +35,15 @@ const CreateBlog = ({ history }: any) => {
 			introduction,
 			tag_json: JSON.stringify(tagList),
 		}
-		postData('/rs/blog', data).then((res) => {})
+		postData('/rs/blog', data).then((res) => {
+			if (res.status == 200) {
+				alert('发布成功')
+				setPost(true)
+				history.push('/blogList')
+			} else {
+				alert('发布失败')
+			}
+		})
 	}
 	const onblur = () => {
 		setTitle(inputRef.current?.value || '')

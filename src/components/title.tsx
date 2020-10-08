@@ -64,6 +64,7 @@ const Title = ({ history, scrollDirection, firstPageEnd, setFirstPageEnd }: any)
 	}
 
 	const IsMobil = () => {
+		debugger
 		if (isEdit) {
 			return <div></div>
 		}
